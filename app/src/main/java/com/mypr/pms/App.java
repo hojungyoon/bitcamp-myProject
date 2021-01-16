@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class App {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+
     //당일 운동횟수 데이터
     final int SIZE = 100;
     Date[] today = new Date[SIZE];
@@ -25,14 +26,16 @@ public class App {
 
     int count = 0;
 
+    // 운동당일 날짜기록
     System.out.print("[날짜입력]> ");
     today[count] = Date.valueOf(scanner.nextLine());
 
+    // 명령어입력
     while(true) {
       System.out.print("명령> ");
       String command = scanner.nextLine();
       if (command.equalsIgnoreCase("/today/add")) {
-
+        // 운동기록 입력
         loop:
           while (true) {
             System.out.println("1. 상체");
@@ -62,17 +65,18 @@ public class App {
                 case 3:
                   System.out.print("행잉-레그: ");
                   hLegRaise[count] = scanner.nextInt();
-              }
+              } // 가슴부위
 
             } else if (choice == 2) {
               System.out.print("스쿼트: ");
               squat[count] = scanner.nextInt();
               System.out.print("런지: ");
               lunge[count] = scanner.nextInt();
-
+              // 하체부위
             } else if (choice == 3) {
               System.out.println("1) 이두");
               System.out.println("2) 삼두");
+              System.out.println("3) 어깨");
               System.out.print("[선택]> ");
               choice = scanner.nextInt();
               switch (choice) {
@@ -84,7 +88,11 @@ public class App {
                   System.out.print("[갯수입력]> ");
                   triceps[count] = scanner.nextInt();
                   break;
-              }
+                case 3:
+                  System.out.print("[갯수입력]> ");
+                  shoulder[count] = scanner.nextInt();
+                  break;
+              } // 팔부위
 
             } else if (choice == 4) {
               System.out.println("1) 러닝");
@@ -106,13 +114,13 @@ public class App {
                   fullBady[count] = scanner.nextInt();
                   break;
               }
-            }
+            } // 유산소
             count++;
             System.out.print("계속 입력하시겠습니까?(y/N) ");
             scanner.nextLine();
             String str = scanner.nextLine();
             if (!str.equalsIgnoreCase("y")) {
-              break;
+              break; // 입력반복 결정
             }
           }
       } else if (command.equalsIgnoreCase("exit") || command.equalsIgnoreCase("quit")) {
