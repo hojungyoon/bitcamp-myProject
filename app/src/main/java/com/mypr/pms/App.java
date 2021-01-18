@@ -79,10 +79,10 @@ public class App {
           System.out.print("복     부> ");
           hLegRaise[count] = scanner.nextInt();
 
-          System.out.print("러     닝> ");
+          System.out.print("러 닝(km)> ");
           running[count] = scanner.nextDouble();
 
-          System.out.print("하 이 킹 > ");
+          System.out.print("등 산(분)> ");
           hiking[count] = scanner.nextInt();
 
           System.out.print("배틀로프 > ");
@@ -95,8 +95,8 @@ public class App {
 
         } else if (command.equalsIgnoreCase("/recode/list")) {
           for (int i = 0; i < count; i++) {
+            System.out.printf("[%d회차]: %s\n", i+1,  today[i]);
             if (pushUp[i] > 0) {
-              System.out.printf("[%d회차]: %s\n", i,  today[i]);
               System.out.println("-----[상  체]-----");
               System.out.printf("푸 쉬 업 : %d회\n", pushUp[i]);
             }
@@ -142,7 +142,7 @@ public class App {
 
         } else if (command.equalsIgnoreCase("/total/score")) {
           for (int i = 0; i < count; i++) {
-            sDay = i;
+            sDay = i+1;
             sPushUp += pushUp[i];
             sDipping += dipping[i];
             sChinning += chinning[i];
