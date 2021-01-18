@@ -95,23 +95,47 @@ public class App {
 
         } else if (command.equalsIgnoreCase("/recode/list")) {
           for (int i = 0; i < count; i++) {
-            System.out.printf("[%d회차]: %s\n", i,  today[i]);
-            System.out.println("-----[상  체]-----");
-            System.out.printf("푸 쉬 업 : %d회\n", pushUp[i]);
-            System.out.printf("딥스&스윙: %d회\n", dipping[i]);
-            System.out.printf("풀     업: %d회\n", chinning[i]);
-            System.out.printf("행잉-레그: %d회\n", hLegRaise[i]);
-            System.out.println("-----[하  체]-----");
-            System.out.printf("스 쿼 트 : %d회\n", squat[i]);
-            System.out.printf("런     지: %d회\n", lunge[i]);
-            System.out.println("-----[  팔  ]-----");
-            System.out.printf("이     두: %d회\n", biceps[i]);
-            System.out.printf("삼     두: %d회\n", triceps[i]);
-            System.out.printf("어     깨: %d회\n", shoulder[i]);
-            System.out.println("-----[유산소]-----");
-            System.out.printf("러     닝: %.2fkm\n", running[i]);
-            System.out.printf("등     산: %d분\n", hiking[i]);
-            System.out.printf("배틀 로프: %d회\n", rope[i]);
+            if (pushUp[i] > 0) {
+              System.out.printf("[%d회차]: %s\n", i,  today[i]);
+              System.out.println("-----[상  체]-----");
+              System.out.printf("푸 쉬 업 : %d회\n", pushUp[i]);
+            }
+            if (dipping[i] > 0) {
+              System.out.printf("딥스&스윙: %d회\n", dipping[i]);
+            }
+            if (chinning[i] > 0) {
+              System.out.printf("풀     업: %d회\n", chinning[i]);
+            }
+            if (hLegRaise[i] > 0) {
+              System.out.printf("행잉-레그: %d회\n", hLegRaise[i]);
+            }
+            if (squat[i] > 0) {
+              System.out.println("-----[하  체]-----");
+              System.out.printf("스 쿼 트 : %d회\n", squat[i]);
+            }
+            if (lunge[i] > 0) {
+              System.out.printf("런     지: %d회\n", lunge[i]);
+            }
+            if (biceps[i] > 0) {
+              System.out.println("-----[  팔  ]-----");
+              System.out.printf("이     두: %d회\n", biceps[i]);
+            }
+            if (triceps[i] > 0) {
+              System.out.printf("삼     두: %d회\n", triceps[i]);
+            }
+            if (shoulder[i] > 0) {
+              System.out.printf("어     깨: %d회\n", shoulder[i]);
+            }
+            if (running[i] > 0) {
+              System.out.println("-----[유산소]-----");
+              System.out.printf("러     닝: %.2fkm\n", running[i]);
+            }
+            if (hiking[i] > 0) {
+              System.out.printf("등     산: %d분\n", hiking[i]);
+            }
+            if (rope[i] > 0) {
+              System.out.printf("배틀 로프: %d회\n", rope[i]);
+            }
             System.out.println("-----------------------------");
           }
 
