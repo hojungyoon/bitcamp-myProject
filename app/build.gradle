@@ -12,6 +12,11 @@ plugins {
     id 'java'
     id 'eclipse'
 }
+eclipse {
+    project {
+        name = "myproject"
+    }
+}
 
 repositories {
     // Use JCenter for resolving dependencies.
