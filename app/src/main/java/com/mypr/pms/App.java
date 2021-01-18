@@ -109,15 +109,15 @@ public class App {
             if (hLegRaise[i] > 0) {
               System.out.printf("행잉-레그: %d회\n", hLegRaise[i]);
             }
+            System.out.println("-----[하  체]-----");
             if (squat[i] > 0) {
-              System.out.println("-----[하  체]-----");
               System.out.printf("스 쿼 트 : %d회\n", squat[i]);
             }
             if (lunge[i] > 0) {
               System.out.printf("런     지: %d회\n", lunge[i]);
             }
+            System.out.println("-----[  팔  ]-----");
             if (biceps[i] > 0) {
-              System.out.println("-----[  팔  ]-----");
               System.out.printf("이     두: %d회\n", biceps[i]);
             }
             if (triceps[i] > 0) {
@@ -126,8 +126,8 @@ public class App {
             if (shoulder[i] > 0) {
               System.out.printf("어     깨: %d회\n", shoulder[i]);
             }
+            System.out.println("-----[유산소]-----");
             if (running[i] > 0) {
-              System.out.println("-----[유산소]-----");
               System.out.printf("러     닝: %.2fkm\n", running[i]);
             }
             if (hiking[i] > 0) {
