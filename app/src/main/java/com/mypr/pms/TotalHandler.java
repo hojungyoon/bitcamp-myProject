@@ -12,7 +12,7 @@ public class TotalHandler {
   static int sTriceps = 0;
   static int sShoulder = 0;
   static int sHLegRaise = 0;
-  static double sRunning = 0;
+  static int sRunning = 0;
   static int sHiking = 0;
   static int sRope = 0;
 
@@ -47,7 +47,7 @@ public class TotalHandler {
     System.out.printf("삼     두: %d회\n", sTriceps);
     System.out.printf("어     깨: %d회\n", sShoulder);
     System.out.println("-----[유산소]-----");
-    System.out.printf("러     닝: %.2fkm\n", sRunning);
+    System.out.printf("러     닝: %dkm\n", sRunning);
     System.out.printf("등     산: %d분\n", sHiking);
     System.out.printf("배틀 로프: %d회\n", sRope);
 
