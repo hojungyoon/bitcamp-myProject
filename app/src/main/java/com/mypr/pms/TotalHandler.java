@@ -40,37 +40,22 @@ public class TotalHandler {
     }
     System.out.println("==============================");
     RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
-    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    System.out.println("-----[상  체]-----");
+    RecodeHandler.Infor("푸 쉬 업 : %d회\n", s.pushUp);
+    RecodeHandler.Infor("딥스&스윙: %d회\n", s.dipping);
+    RecodeHandler.Infor("행잉-레그: %d회\n", s.hLegRaise);
+    System.out.println("-----[하  체]-----");
+    RecodeHandler.Infor("스 쿼 트 : %d회\n", s.squat);
+    RecodeHandler.Infor("런     지: %d회\n", s.lunge);
+    System.out.println("-----[  팔  ]-----\n");
+    RecodeHandler.Infor("이     두: %d회\n", s.biceps);
+    RecodeHandler.Infor("삼     두: %d회\n", s.triceps);
+    RecodeHandler.Infor("어     깨: %d회\n", s.shoulder);
+    System.out.println("-----[유산소]-----\n");
+    RecodeHandler.Infor("러     닝: %dkm\n", s.running);
+    RecodeHandler.Infor("등     산: %d분\n", s.hiking);
+    RecodeHandler.Infor("배틀 로프: %d회\n", s.rope);
     System.out.println("==============================");
-
-    +"-----[상  체]-----\n"
-    +"푸 쉬 업 : %d회\n"
-    +"딥스&스윙: %d회\n"
-    +"풀     업: %d회\n"
-    +"행잉-레그: %d회\n"
-    +"-----[하  체]-----\n"
-    +"스 쿼 트 : %d회\n"
-    +"런     지: %d회\n"
-    +"-----[  팔  ]-----\n"
-    +"이     두: %d회\n"
-    +"삼     두: %d회\n"
-    +"어     깨: %d회\n"
-    +"-----[유산소]-----\n"
-    +"러     닝: %dkm\n"
-    +"등     산: %d분\n"
-    +"배틀 로프: %d회\n"
-    ,s.day ,s.pushUp, s.dipping, s.chinning, s.hLegRaise, s.squat, s.lunge
-    , s.biceps, s.triceps, s.shoulder, s.running, s.hiking, s.rope);
   }
 }
 
