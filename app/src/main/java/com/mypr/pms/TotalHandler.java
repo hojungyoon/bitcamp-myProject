@@ -1,55 +1,76 @@
 package com.mypr.pms;
 
 public class TotalHandler {
+  static class Sum {
+    int day = 0;
+    int pushUp = 0;
+    int dipping = 0;
+    int chinning = 0;
+    int squat = 0;
+    int lunge = 0;
+    int biceps = 0;
+    int triceps = 0;
+    int shoulder = 0;
+    int hLegRaise = 0;
+    int running = 0;
+    int hiking = 0;
+    int rope = 0;
+  }
 
-  static int sDay = 0;
-  static int sPushUp = 0;
-  static int sDipping = 0;
-  static int sChinning = 0;
-  static int sSquat = 0;
-  static int sLunge = 0;
-  static int sBieps = 0;
-  static int sTriceps = 0;
-  static int sShoulder = 0;
-  static int sHLegRaise = 0;
-  static int sRunning = 0;
-  static int sHiking = 0;
-  static int sRope = 0;
+  //  static Sum[] sum = new Sum[MenuHandler.SIZE];
 
   static void total() {
-    for (int i = 0; i < MenuHandler.count; i++) {
-      sDay = i+1;
-      sPushUp += MenuHandler.pushUp[i];
-      sDipping += MenuHandler.dipping[i];
-      sChinning += MenuHandler.chinning[i];
-      sSquat += MenuHandler.squat[i];
-      sLunge += MenuHandler.lunge[i];
-      sBieps += MenuHandler.biceps[i];
-      sTriceps += MenuHandler.triceps[i];
-      sShoulder += MenuHandler.shoulder[i];
-      sHLegRaise += MenuHandler.hLegRaise[i];
-      sRunning += MenuHandler.running[i];
-      sHiking += MenuHandler.hiking[i];
-      sRope += MenuHandler.rope[i];
-    }
-    System.out.println("======================");
-    System.out.printf("[운동횟수:%d회]\n", sDay);
-    System.out.println("-----[상  체]-----");
-    System.out.printf("푸 쉬 업 : %d회\n", sPushUp);
-    System.out.printf("딥스&스윙: %d회\n", sDipping);
-    System.out.printf("풀     업: %d회\n", sChinning);
-    System.out.printf("행잉-레그: %d회\n", sHLegRaise);
-    System.out.println("-----[하  체]-----");
-    System.out.printf("스 쿼 트 : %d회\n", sSquat);
-    System.out.printf("런     지: %d회\n", sLunge);
-    System.out.println("-----[  팔  ]-----");
-    System.out.printf("이     두: %d회\n", sBieps);
-    System.out.printf("삼     두: %d회\n", sTriceps);
-    System.out.printf("어     깨: %d회\n", sShoulder);
-    System.out.println("-----[유산소]-----");
-    System.out.printf("러     닝: %dkm\n", sRunning);
-    System.out.printf("등     산: %d분\n", sHiking);
-    System.out.printf("배틀 로프: %d회\n", sRope);
+    Sum s = new Sum();
 
+    for (int i = 0; i < MenuHandler.count; i++) {
+      s.day = i+1;
+      s.pushUp += MenuHandler.works[i].pushUp;
+      s.dipping += MenuHandler.works[i].dipping;
+      s.chinning += MenuHandler.works[i].chinning;
+      s.hLegRaise += MenuHandler.works[i].hLegRaise;
+      s.squat += MenuHandler.works[i].squat;
+      s.lunge += MenuHandler.works[i].lunge;
+      s.biceps += MenuHandler.works[i].biceps;
+      s.triceps += MenuHandler.works[i].triceps;
+      s.shoulder += MenuHandler.works[i].shoulder;
+      s.running += MenuHandler.works[i].running;
+      s.hiking += MenuHandler.works[i].hiking;
+      s.rope += MenuHandler.works[i].rope;
+
+    }
+    System.out.println("==============================");
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    RecodeHandler.Infor("[운동횟수:%d회]\n", s.day);
+    System.out.println("==============================");
+
+    +"-----[상  체]-----\n"
+    +"푸 쉬 업 : %d회\n"
+    +"딥스&스윙: %d회\n"
+    +"풀     업: %d회\n"
+    +"행잉-레그: %d회\n"
+    +"-----[하  체]-----\n"
+    +"스 쿼 트 : %d회\n"
+    +"런     지: %d회\n"
+    +"-----[  팔  ]-----\n"
+    +"이     두: %d회\n"
+    +"삼     두: %d회\n"
+    +"어     깨: %d회\n"
+    +"-----[유산소]-----\n"
+    +"러     닝: %dkm\n"
+    +"등     산: %d분\n"
+    +"배틀 로프: %d회\n"
+    ,s.day ,s.pushUp, s.dipping, s.chinning, s.hLegRaise, s.squat, s.lunge
+    , s.biceps, s.triceps, s.shoulder, s.running, s.hiking, s.rope);
   }
 }
+

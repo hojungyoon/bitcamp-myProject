@@ -1,6 +1,7 @@
 package com.mypr.pms;
 
 public class Main {
+
   public static void main(String[] args) {
 
     loop1:
@@ -9,7 +10,7 @@ public class Main {
             "======================\n1./add\n2./recode\n3./total\n4.exit(quit)\n명령> ");
 
         if (command.equalsIgnoreCase("/add")) {
-          MenuHandler.inputMenu();
+          MenuHandler.Menu();
         } else if (command.equalsIgnoreCase("/recode")) {
           RecodeHandler.recode();
         } else if (command.equalsIgnoreCase("/total")) {

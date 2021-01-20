@@ -3,42 +3,51 @@ package com.mypr.pms;
 import java.sql.Date;
 
 public class MenuHandler {
-  //당일 운동횟수 데이터
-  static final int SIZE = 100;
-  static Date[] today = new Date[SIZE];
-  static int[] pushUp = new int[SIZE];
-  static int[] dipping = new int[SIZE];
-  static int[] chinning = new int[SIZE];
-  static int[] squat = new int[SIZE];
-  static int[] lunge = new int[SIZE];
-  static int[] biceps = new int[SIZE];
-  static int[] triceps = new int[SIZE];
-  static int[] shoulder = new int[SIZE];
-  static int[] hLegRaise = new int[SIZE];
-  static int[] running = new int[SIZE];
-  static int[] hiking = new int[SIZE];
-  static int[] rope = new int[SIZE];
 
-  static int count = 0;
-
-  static void inputMenu() {
-    System.out.println("======================");
-    today[count] = Prompt.inputDay("날짜입력 > ");
-    pushUp[count] = Prompt.inputInt("푸쉬업 > ");
-    dipping[count] = Prompt.inputInt("딥스 > ");
-    chinning[count] = Prompt.inputInt("풀업 > ");
-    squat[count] = Prompt.inputInt("스쿼트 > ");
-    lunge[count] = Prompt.inputInt("런지 > ");
-    biceps[count] = Prompt.inputInt("이두 > ");
-    triceps[count] = Prompt.inputInt("삼두 > ");
-    shoulder[count] = Prompt.inputInt("어깨 > ");
-    hLegRaise[count] = Prompt.inputInt("복부 > ");
-    running[count] = Prompt.inputInt("러 닝(km) > ");
-    hiking[count] = Prompt.inputInt("등산(분) > ");
-    rope[count] =  Prompt.inputInt("배틀로프 > ");
-
-
-    count++;
+  static class Work{
+    Date today;
+    int pushUp;
+    int dipping;
+    int chinning;
+    int squat;
+    int lunge;
+    int biceps;
+    int triceps;
+    int shoulder;
+    int hLegRaise;
+    int running;
+    int hiking;
+    int rope;
   }
 
+  static final int SIZE = 100;
+  static Work[] works = new Work[SIZE];
+  static int count = 0;
+
+
+  static void Menu() {
+    Work w = new Work();
+
+    System.out.println("==============================");
+    w.today = Prompt.inputDay("날짜입력 > ");
+    w.pushUp = Prompt.inputInt("푸쉬업 > ");
+    w.dipping = Prompt.inputInt("딥스 > ");
+    w.chinning = Prompt.inputInt("풀업 > ");
+    w.squat = Prompt.inputInt("스쿼트 > ");
+    w.lunge= Prompt.inputInt("런지 > ");
+    w.biceps = Prompt.inputInt("이두 > ");
+    w.triceps = Prompt.inputInt("삼두 > ");
+    w.shoulder = Prompt.inputInt("어깨 > ");
+    w.hLegRaise = Prompt.inputInt("복부 > ");
+    w.running = Prompt.inputInt("러 닝(km) > ");
+    w.hiking = Prompt.inputInt("등산(분) > ");
+    w.rope =  Prompt.inputInt("배틀로프 > ");
+
+    works[count++] = w;
+
+  }
+
+
 }
+
+
