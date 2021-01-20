@@ -47,11 +47,11 @@ public class TotalHandler {
     System.out.println("-----[하  체]-----");
     RecodeHandler.Infor("스 쿼 트 : %d회\n", s.squat);
     RecodeHandler.Infor("런     지: %d회\n", s.lunge);
-    System.out.println("-----[  팔  ]-----\n");
+    System.out.println("-----[  팔  ]-----");
     RecodeHandler.Infor("이     두: %d회\n", s.biceps);
     RecodeHandler.Infor("삼     두: %d회\n", s.triceps);
     RecodeHandler.Infor("어     깨: %d회\n", s.shoulder);
-    System.out.println("-----[유산소]-----\n");
+    System.out.println("-----[유산소]-----");
     RecodeHandler.Infor("러     닝: %dkm\n", s.running);
     RecodeHandler.Infor("등     산: %d분\n", s.hiking);
     RecodeHandler.Infor("배틀 로프: %d회\n", s.rope);

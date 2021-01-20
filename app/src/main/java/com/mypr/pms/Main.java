@@ -11,6 +11,7 @@ public class Main {
 
         if (command.equalsIgnoreCase("/add")) {
           MenuHandler.Menu();
+          MenuHandler.works[MenuHandler.count++] = MenuHandler.w;
         } else if (command.equalsIgnoreCase("/recode")) {
           RecodeHandler.recode();
         } else if (command.equalsIgnoreCase("/total")) {
