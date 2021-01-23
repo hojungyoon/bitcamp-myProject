@@ -1,10 +1,12 @@
 package com.mypr.pms;
 
+import handler.CalisthenicsMenuHandler;
+
 public class Main {
 
   public static void main(String[] args) {
 
-    MenuHandler2 menuHandler = new MenuHandler2();
+    CalisthenicsMenuHandler menuHandler = new CalisthenicsMenuHandler();
 
     loop1:
       while (true) {

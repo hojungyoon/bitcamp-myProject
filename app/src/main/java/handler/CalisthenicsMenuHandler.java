@@ -1,18 +1,19 @@
-package com.mypr.pms;
+package handler;
 
-import com.mypr.pms.domain.Menu;
-import com.mypr.pms.domain.Total;
+import com.mypr.pms.Prompt;
+import com.mypr.pms.domain.CalisthenicsTotal;
+import com.mypr.pms.domain.CalisthenicshMenu;
 
-public class MenuHandler2 {
+public class CalisthenicsMenuHandler {
   static final int SIZE = 100;
 
-  Menu[] menus = new Menu[SIZE];
+  CalisthenicshMenu[] cMenus = new CalisthenicshMenu[SIZE];
 
   int count = 0;
 
 
   public void calisMenu() {
-    Menu m = new Menu();
+    CalisthenicshMenu c = new CalisthenicshMenu();
 
     loop:
       while(true) {
@@ -25,19 +26,19 @@ public class MenuHandler2 {
                 int i2 = Prompt.inputInt("1.전면\n2.후면\n3.팔\n4.복부\n> ");
                 switch(i2) {
                   case 1:
-                    m.pushUp = Prompt.inputInt("푸쉬업 > ");
-                    m.dipping = Prompt.inputInt("딥스 > ");
+                    c.pushUp = Prompt.inputInt("푸쉬업 > ");
+                    c.dipping = Prompt.inputInt("딥스 > ");
                     break;
                   case 2:
-                    m.chinning = Prompt.inputInt("풀업 > ");
+                    c.chinning = Prompt.inputInt("풀업 > ");
                     break;
                   case 3:
-                    m.biceps = Prompt.inputInt("이두 > ");
-                    m.triceps = Prompt.inputInt("삼두 > ");
-                    m.shoulder = Prompt.inputInt("어깨 > ");
+                    c.biceps = Prompt.inputInt("이두 > ");
+                    c.triceps = Prompt.inputInt("삼두 > ");
+                    c.shoulder = Prompt.inputInt("어깨 > ");
                     break;
                   case 4:
-                    m.hLegRaise = Prompt.inputInt("복부 > ");
+                    c.hLegRaise = Prompt.inputInt("복부 > ");
                     break;
                   default :
                     System.out.println("재입력 바랍니다.");
@@ -47,13 +48,13 @@ public class MenuHandler2 {
               }
             break;
           case 2:
-            m.squat = Prompt.inputInt("스쿼트 > ");
-            m.lunge= Prompt.inputInt("런지 > ");
+            c.squat = Prompt.inputInt("스쿼트 > ");
+            c.lunge= Prompt.inputInt("런지 > ");
             break;
           case 3:
-            m.running = Prompt.inputInt("러 닝(km) > ");
-            m.hiking = Prompt.inputInt("등산(분) > ");
-            m.rope =  Prompt.inputInt("배틀로프 > ");
+            c.running = Prompt.inputInt("러 닝(km) > ");
+            c.hiking = Prompt.inputInt("등산(분) > ");
+            c.rope =  Prompt.inputInt("배틀로프 > ");
             break;
           case 4:
             break;
@@ -65,10 +66,10 @@ public class MenuHandler2 {
           continue loop;
         }
         System.out.println("==============================");
-        m.today = Prompt.inputDay("날짜입력 > ");
+        c.today = Prompt.inputDay("날짜입력 > ");
         break;
       }
-    this.menus[this.count++] = m;
+    this.cMenus[this.count++] = c;
   }
 
 
@@ -90,47 +91,47 @@ public class MenuHandler2 {
 
   public void recode() {
     for (int i = 0; i < count; i++) {
-      Menu m = this.menus[i];
+      CalisthenicshMenu c = this.cMenus[i];
       System.out.printf("\n==============================\n");
-      System.out.printf("[%d회차]: %s\n", i+1, m.today);
+      System.out.printf("[%d회차]: %s\n", i+1, c.today);
       System.out.println("-----[상  체]-----");
-      recodeOutput("푸 쉬 업 : %d회\n", m.pushUp);
-      recodeOutput("딥스&스윙: %d회\n", m.dipping);
-      recodeOutput("풀     업: %d회\n", m.chinning);
-      recodeOutput("행잉-레그: %d회\n", m.hLegRaise);
+      recodeOutput("푸 쉬 업 : %d회\n", c.pushUp);
+      recodeOutput("딥스&스윙: %d회\n", c.dipping);
+      recodeOutput("풀     업: %d회\n", c.chinning);
+      recodeOutput("행잉-레그: %d회\n", c.hLegRaise);
       System.out.println("-----[하  체]-----");
-      recodeOutput("스 쿼 트 : %d회\n", m.squat);
-      recodeOutput("런     지: %d회\n", m.lunge);
+      recodeOutput("스 쿼 트 : %d회\n", c.squat);
+      recodeOutput("런     지: %d회\n", c.lunge);
       System.out.println("-----[  팔  ]-----");
-      recodeOutput("이     두: %d회\n", m.biceps);
-      recodeOutput("삼     두: %d회\n", m.triceps);
-      recodeOutput("어     깨: %d회\n", m.shoulder);
+      recodeOutput("이     두: %d회\n", c.biceps);
+      recodeOutput("삼     두: %d회\n", c.triceps);
+      recodeOutput("어     깨: %d회\n", c.shoulder);
       System.out.println("-----[유산소]-----");
-      recodeOutput("러     닝: %dKm\n", m.running);
-      recodeOutput("등     산: %d분\n", m.hiking);
-      recodeOutput("배틀 로프: %d회\n", m.rope);
+      recodeOutput("러     닝: %dKm\n", c.running);
+      recodeOutput("등     산: %d분\n", c.hiking);
+      recodeOutput("배틀 로프: %d회\n", c.rope);
       System.out.println("==============================");
     }
   }
 
-  public void total(MenuHandler2 menuhandler) {
-    Total t = new Total();
+  public void total(CalisthenicsMenuHandler menuhandler) {
+    CalisthenicsTotal t = new CalisthenicsTotal();
 
     int a = 0;
     for (; a < count; a++) {
       t.day = a+1;
-      t.pushUp += menuhandler.menus[a].pushUp;
-      t.dipping += menuhandler.menus[a].dipping;
-      t.chinning += menuhandler.menus[a].chinning;
-      t.hLegRaise += menuhandler.menus[a].hLegRaise;
-      t.squat += menuhandler.menus[a].squat;
-      t.lunge += menuhandler.menus[a].lunge;
-      t.biceps += menuhandler.menus[a].biceps;
-      t.triceps += menuhandler.menus[a].triceps;
-      t.shoulder += menuhandler.menus[a].shoulder;
-      t.running += menuhandler.menus[a].running;
-      t.hiking += menuhandler.menus[a].hiking;
-      t.rope += menuhandler.menus[a].rope;
+      t.pushUp += menuhandler.cMenus[a].pushUp;
+      t.dipping += menuhandler.cMenus[a].dipping;
+      t.chinning += menuhandler.cMenus[a].chinning;
+      t.hLegRaise += menuhandler.cMenus[a].hLegRaise;
+      t.squat += menuhandler.cMenus[a].squat;
+      t.lunge += menuhandler.cMenus[a].lunge;
+      t.biceps += menuhandler.cMenus[a].biceps;
+      t.triceps += menuhandler.cMenus[a].triceps;
+      t.shoulder += menuhandler.cMenus[a].shoulder;
+      t.running += menuhandler.cMenus[a].running;
+      t.hiking += menuhandler.cMenus[a].hiking;
+      t.rope += menuhandler.cMenus[a].rope;
 
     }
     System.out.printf("==============================\n");

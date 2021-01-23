@@ -1,6 +1,6 @@
 package com.mypr.pms.domain;
 
-public class Total {
+public class CalisthenicsTotal {
   public int day = 0;
   public int pushUp = 0;
   public int dipping = 0;

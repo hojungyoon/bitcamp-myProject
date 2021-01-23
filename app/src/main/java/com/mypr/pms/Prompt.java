@@ -6,16 +6,16 @@ import java.util.Scanner;
 public class Prompt {
   static Scanner scanner = new Scanner(System.in);
 
-  static String inputString(String title) {
+  public static String inputString(String title) {
     System.out.printf(title);
     return scanner.nextLine();
   }
 
-  static int inputInt(String title) {
+  public static int inputInt(String title) {
     return Integer.parseInt(inputString(title));
   }
 
-  static Date inputDay(String title) {
+  public static Date inputDay(String title) {
     return Date.valueOf(inputString(title));
   }
 

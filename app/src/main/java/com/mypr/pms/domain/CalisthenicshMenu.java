@@ -2,7 +2,7 @@ package com.mypr.pms.domain;
 
 import java.sql.Date;
 
-public class Menu {
+public class CalisthenicshMenu {
   public Date today;
   public int pushUp;
   public int dipping;
