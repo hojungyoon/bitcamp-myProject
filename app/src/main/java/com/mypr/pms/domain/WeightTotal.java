@@ -1,5 +1,7 @@
 package com.mypr.pms.domain;
 
+
+
 public class WeightTotal {
   public int today;
   public int dPress;

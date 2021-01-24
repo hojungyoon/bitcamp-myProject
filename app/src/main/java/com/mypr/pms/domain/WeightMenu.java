@@ -1,9 +1,7 @@
 package com.mypr.pms.domain;
 
-import java.sql.Date;
-
 public class WeightMenu {
-  public Date today;
+  public String day;
   public int dPress;
   public int inDpress;
   public int dFly;

@@ -1,9 +1,9 @@
+
+
 package com.mypr.pms.domain;
 
-import java.sql.Date;
-
 public class CalisthenicshMenu {
-  public Date today;
+  public String day;
   public int pushUp;
   public int dipping;
   public int chinning;
