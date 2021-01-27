@@ -15,14 +15,14 @@ public class CalisthenicsMenuHandler {
     CalisthenicshMenu c1 = new CalisthenicshMenu();
     loop:
       while(true) {
-        int i = Prompt.inputInt("==============================\n"
+        int i = Prompt.inputInt("\n"
             + "1.상체\n2.하체\n3.유산소\n4.뒤로가기\n> ");
 
         switch(i) {
           case 1:
             loop1:
               while(true) {
-                int i2 = Prompt.inputInt("1.전면\n2.후면\n3.팔\n4.복부\n> ");
+                int i2 = Prompt.inputInt("\n1.전면\n2.후면\n3.팔\n4.복부\n> ");
                 switch(i2) {
                   case 1:
                     c1.pushUp = Prompt.inputInt("푸쉬업 > ");
@@ -97,7 +97,7 @@ public class CalisthenicsMenuHandler {
         } else if (str.equalsIgnoreCase("n")) {
           return false;
         } else {
-          System.out.println("재입력 바랍니다.");
+          System.out.printf("재입력 바랍니다.\n\n");
           continue;
         }
       }
@@ -107,7 +107,7 @@ public class CalisthenicsMenuHandler {
 
   public void calisRecode() {
     if (this.cMenus[0] == null) {
-      System.out.println("입력된 정보가 없습니다.");
+      System.out.printf("입력된 정보가 없습니다.\n\n");
     } else {
       for (int i = 0; i < this.cCount; i++) {
         CalisthenicshMenu c = this.cMenus[i];
@@ -123,8 +123,7 @@ public class CalisthenicsMenuHandler {
       CalisthenicshMenu c = this.cMenus[i];
       this.a = i + 1;
       if (no == i + 1) {
-        System.out.println("==============================");
-        System.out.printf("[%d회차]: %s\n", this.a, c.day);
+        System.out.printf("\n[%d회차]: %s\n", this.a, c.day);
         System.out.println("-----[상  체]-----");
         recodeOutput("푸 쉬 업 : %d회\n", c.pushUp);
         recodeOutput("딥스&스윙: %d회\n", c.dipping);
@@ -141,7 +140,6 @@ public class CalisthenicsMenuHandler {
         recodeOutput("러     닝: %dKm\n", c.running);
         recodeOutput("등     산: %d분\n", c.hiking);
         recodeOutput("배틀 로프: %d회\n", c.rope);
-        System.out.println("==============================");
       } 
     }
   }
@@ -165,8 +163,7 @@ public class CalisthenicsMenuHandler {
       t.rope += ct.rope;
 
     }
-    System.out.println("==============================");
-    System.out.printf("[운동횟수:%d회]\n", t.day);
+    System.out.printf("\n[운동횟수:%d회]\n", t.day);
     System.out.println("-----[상  체]-----");
     System.out.printf("푸 쉬 업 : %d회\n", t.pushUp);
     System.out.printf("딥스&스윙: %d회\n", t.dipping);
@@ -183,7 +180,7 @@ public class CalisthenicsMenuHandler {
     System.out.printf("러     닝: %dkm\n", t.running);
     System.out.printf("등     산: %d분\n", t.hiking);
     System.out.printf("배틀 로프: %d회\n", t.rope);
-    System.out.println("==============================");
+
   }
 
   public void recodeOutput(String work, int totals) {
@@ -208,11 +205,10 @@ public class CalisthenicsMenuHandler {
     for (int i = 0; i < this.cCount; i++) {
       CalisthenicshMenu m = this.cMenus[i];
       if (no == i + 1) {
-        System.out.println("==============================");
-        System.out.printf("마라톤 완주거리:%dKm\n", m.running);
-        System.out.printf("마라톤 완주일자:%s\n", m.day);
-        System.out.printf("마라톤 대회이름:%s\n", m.marathonName);
-        System.out.println("==============================");
+        System.out.printf("\n마라톤 완주거리: %dKm\n", m.running);
+        System.out.printf("마라톤 완주일자: %s\n", m.day);
+        System.out.printf("마라톤 대회이름: %s\n", m.marathonName);
+        System.out.println("------------------------------");
       } 
     }
   }
