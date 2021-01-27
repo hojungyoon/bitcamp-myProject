@@ -56,7 +56,7 @@ public class CalisthenicsMenuHandler {
             c1.rope =  Prompt.inputInt("배틀로프 > ");
             break;
           case 4:
-            break;
+            break loop;
           default :
             System.out.println("재입력 바랍니다.");
             continue loop;
@@ -149,6 +149,7 @@ public class CalisthenicsMenuHandler {
     System.out.println("-----[상  체]-----");
     System.out.printf("푸 쉬 업 : %d회\n", t.pushUp);
     System.out.printf("딥스&스윙: %d회\n", t.dipping);
+    System.out.printf("풀     업: %d회\n", t.chinning);
     System.out.printf("행잉-레그: %d회\n", t.hLegRaise);
     System.out.println("-----[하  체]-----");
     System.out.printf("스 쿼 트 : %d회\n", t.squat);

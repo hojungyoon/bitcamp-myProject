@@ -17,36 +17,24 @@ public class WeightMenuHandler {
     loop:
       while(true) {
         int i = Prompt.inputInt("==============================\n"
-            + "1.상체\n2.하체\n3.유산소\n4.뒤로가기\n> ");
-
+            + "1.전면\n2.팔\n3.뒤로가기\n> ");
         switch(i) {
           case 1:
-            loop1:
-              while(true) {
-                int i2 = Prompt.inputInt("1.전면\n2.팔\n> ");
-
-                switch(i2) {
-                  case 1:
-                    w1.dPress = Prompt.inputInt("덤벨프레스 > ");
-                    w1.inDpress = Prompt.inputInt("IN.프레스 > ");
-                    w1.dFly = Prompt.inputInt("덤벨플라이 > ");
-                    w1.inFly = Prompt.inputInt("IN.플라이 > ");
-                    w1.dumbellPullover = Prompt.inputInt("덤벨풀오버 > ");
-
-                  case 2:
-                    w1.dPress = Prompt.inputInt("덤벨프레스 > ");
-                    w1.inDpress = Prompt.inputInt("IN.프레스 > ");
-                    w1.dFly = Prompt.inputInt("덤벨플라이 > ");
-                    w1.inFly = Prompt.inputInt("IN.플라이 > ");
-                    w1.dumbellPullover = Prompt.inputInt("덤벨풀오버 > ");
-                    break;
-                  default :
-                    System.out.println("재입력 바랍니다.");
-                    continue loop1;
-                }
-                break;
-              }
+            w1.dPress = Prompt.inputInt("덤벨프레스 > ");
+            w1.inDpress = Prompt.inputInt("IN.프레스 > ");
+            w1.dFly = Prompt.inputInt("덤벨플라이 > ");
+            w1.inFly = Prompt.inputInt("IN.플라이 > ");
+            w1.dumbellPullover = Prompt.inputInt("덤벨풀오버 > ");
             break;
+          case 2:
+            w1.bicepsCurl = Prompt.inputInt("이두덤벨컬 > ");
+            w1.tricepOver = Prompt.inputInt("오버헤드익스텐션 > ");
+            w1.lateralRaise = Prompt.inputInt("레터럴라이즈 > ");
+            w1.shoulderPress = Prompt.inputInt("숄더프레스 > ");
+            w1.bentoverLateral = Prompt.inputInt("벤트오버 > ");
+            break;
+          case 3:
+            break loop;
           default :
             System.out.println("재입력 바랍니다.");
             continue loop;
@@ -97,7 +85,7 @@ public class WeightMenuHandler {
       recodeOutput("덤벨프레스 : %d회\n", w.dPress);
       recodeOutput("IN.프 레 스: %d회\n", w.inDpress);
       recodeOutput("덤벨플라이 : %d회\n", w.dFly);
-      recodeOutput("IN.플 라 이: %d회\n", w.inDpress);
+      recodeOutput("IN.플 라 이: %d회\n", w.inFly);
       System.out.println("-----[  팔  ]-----");
       recodeOutput("이두 덤벨컬 : %d회\n", w.bicepsCurl);
       recodeOutput("오버헤드익스: %d회\n", w.tricepOver);
@@ -134,6 +122,7 @@ public class WeightMenuHandler {
     System.out.printf("덤벨프레스 : %d회\n", w.dPress);
     System.out.printf("IN.프 레 스: %d회\n", w.inDpress);
     System.out.printf("덤벨플라이 : %d회\n", w.dFly);
+    System.out.printf("IN.플 라 이: %d회\n", w.inFly);
     System.out.printf("덤벨 풀오버 : %d회\n", w.dumbellPullover);
     System.out.println("-----[  팔  ]-----");
     System.out.printf("이두 덤벨컬 : %d회\n", w.bicepsCurl);
