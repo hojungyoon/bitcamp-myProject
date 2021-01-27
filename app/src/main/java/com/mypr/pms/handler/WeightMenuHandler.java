@@ -94,7 +94,7 @@ public class WeightMenuHandler {
       recodeOutput("숄더 프레스 : %d회\n", w.shoulderPress);
       recodeOutput("벤 트 오 버 : %d회\n", w.bentoverLateral);
       System.out.println("-----[전  면]-----");
-      recodeOutput("덤벨 풀오버 : %dKm\n", w.dumbellPullover);
+      recodeOutput("덤벨 풀오버 : %d회]\n", w.dumbellPullover);
       System.out.println("==============================");
     }
   }

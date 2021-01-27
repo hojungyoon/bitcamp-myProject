@@ -10,7 +10,7 @@ public class Main {
 
     while (true) {
       String command = Prompt.inputString(
-          "======================"
+          "=============================="
               + "\n1./add"
               + "\n2./recode"
               + "\n3./total"

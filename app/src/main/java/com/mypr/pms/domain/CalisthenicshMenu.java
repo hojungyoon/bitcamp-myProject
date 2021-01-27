@@ -14,6 +14,7 @@ public class CalisthenicshMenu {
   public int shoulder;
   public int hLegRaise;
   public int running;
+  public String marathonName;
   public int hiking;
   public int rope;
 }

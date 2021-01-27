@@ -8,7 +8,7 @@ public class MenuHandler {
 
   public void addMenu() {
     while(true) {
-      int choice = Prompt.inputInt("======================\n"
+      int choice = Prompt.inputInt("==============================\n"
           + "1.Calisthenics"
           + "\n2.Weight\n"
           + "> ");
@@ -26,7 +26,7 @@ public class MenuHandler {
 
   public void recodeMenu() {
     while(true) {
-      int choice = Prompt.inputInt("======================\n"
+      int choice = Prompt.inputInt("==============================\n"
           + "1.Calisthenics\n"
           + "2.Weight\n"
           + "> ");
@@ -44,7 +44,7 @@ public class MenuHandler {
 
   public void totalMenu() {
     while(true) {
-      int choice = Prompt.inputInt("======================\n"
+      int choice = Prompt.inputInt("==============================\n"
           + "1.Calisthenics\n"
           + "2.Weight\n"
           + "> ");
