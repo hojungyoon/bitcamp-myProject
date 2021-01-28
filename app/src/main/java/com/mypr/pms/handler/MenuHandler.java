@@ -64,4 +64,8 @@ public class MenuHandler {
     calisWork.marathonRecode();
   }
 
+  public void upAndDel() {
+    calisWork.upAndDel();
+  }
+
 }

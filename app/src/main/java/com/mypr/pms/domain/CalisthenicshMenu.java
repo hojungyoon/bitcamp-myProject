@@ -11,7 +11,6 @@ public class CalisthenicshMenu {
   public int lunge;
   public int biceps;
   public int triceps;
-  public int shoulder;
   public int hLegRaise;
   public int running;
   public String marathonName;

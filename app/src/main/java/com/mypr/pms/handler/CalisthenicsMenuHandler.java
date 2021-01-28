@@ -34,7 +34,6 @@ public class CalisthenicsMenuHandler {
                   case 3:
                     c1.biceps = Prompt.inputInt("이두 > ");
                     c1.triceps = Prompt.inputInt("삼두 > ");
-                    c1.shoulder = Prompt.inputInt("어깨 > ");
                     break;
                   case 4:
                     c1.hLegRaise = Prompt.inputInt("복부 > ");
@@ -77,7 +76,6 @@ public class CalisthenicsMenuHandler {
         c1.lunge > 0 ||
         c1.biceps > 0 ||
         c1.triceps > 0 ||
-        c1.shoulder > 0 ||
         c1.running > 0 ||
         c1.hiking > 0 ||
         c1.rope> 0) {
@@ -107,11 +105,11 @@ public class CalisthenicsMenuHandler {
 
   public void calisRecode() {
     if (this.cMenus[0] == null) {
-      System.out.printf("입력된 정보가 없습니다.\n\n");
+      System.out.printf("입력된 정보가 없습니다.\n");
     } else {
       for (int i = 0; i < this.cCount; i++) {
         CalisthenicshMenu c = this.cMenus[i];
-        System.out.printf("[%d. %s]\n", i+1, c.day);
+        System.out.printf("[%d회차. %s]\n", i+1, c.day);
       }
       calisRecodeList();
     }
@@ -122,7 +120,7 @@ public class CalisthenicsMenuHandler {
     for (int i = 0; i < this.cCount; i++) {
       CalisthenicshMenu c = this.cMenus[i];
       this.a = i + 1;
-      if (no == i + 1) {
+      if (no == this.a) {
         System.out.printf("\n[%d회차]: %s\n", this.a, c.day);
         System.out.println("-----[상  체]-----");
         recodeOutput("푸 쉬 업 : %d회\n", c.pushUp);
@@ -135,7 +133,6 @@ public class CalisthenicsMenuHandler {
         System.out.println("-----[  팔  ]-----");
         recodeOutput("이     두: %d회\n", c.biceps);
         recodeOutput("삼     두: %d회\n", c.triceps);
-        recodeOutput("어     깨: %d회\n", c.shoulder);
         System.out.println("-----[유산소]-----");
         recodeOutput("러     닝: %dKm\n", c.running);
         recodeOutput("등     산: %d분\n", c.hiking);
@@ -157,7 +154,6 @@ public class CalisthenicsMenuHandler {
       t.lunge += ct.lunge;
       t.biceps += ct.biceps;
       t.triceps += ct.triceps;
-      t.shoulder += ct.shoulder;
       t.running += ct.running;
       t.hiking += ct.hiking;
       t.rope += ct.rope;
@@ -175,7 +171,6 @@ public class CalisthenicsMenuHandler {
     System.out.println("-----[  팔  ]-----");
     System.out.printf("이     두: %d회\n", t.biceps);
     System.out.printf("삼     두: %d회\n", t.triceps);
-    System.out.printf("어     깨: %d회\n", t.shoulder);
     System.out.println("-----[유산소]-----");
     System.out.printf("러     닝: %dkm\n", t.running);
     System.out.printf("등     산: %d분\n", t.hiking);
@@ -205,7 +200,7 @@ public class CalisthenicsMenuHandler {
     for (int i = 0; i < this.cCount; i++) {
       CalisthenicshMenu m = this.cMenus[i];
       if (no == i + 1) {
-        System.out.printf("\n마라톤 완주거리: %dKm\n", m.running);
+        System.out.printf("\n마라톤 완주거리: %d Km\n", m.running);
         System.out.printf("마라톤 완주일자: %s\n", m.day);
         System.out.printf("마라톤 대회이름: %s\n", m.marathonName);
         System.out.println("------------------------------");
@@ -213,27 +208,106 @@ public class CalisthenicsMenuHandler {
     }
   }
 
-  //  public void update() {
-  //    System.out.println("[기록변경]");
-  //    if (this.cMenus[0] == null) {
-  //      System.out.printf("입력된 정보가 없습니다.\n\n");
-  //    } else {
-  //      for (int i = 0; i < this.cCount; i++) {
-  //        CalisthenicshMenu c = this.cMenus[i];
-  //        a = i + 1;
-  //        System.out.printf("[%d. %s]\n", a, c.day);
-  //      }
-  //      int number = Prompt.inputInt("> ");
-  //      if(number == a) {
-  //        System.out.printf("\n1.상체 전면\n2.상체 후면\n3.팔\n4.하체\n5.유산소\n");
-  //        number = Prompt.inputInt("수정할 부분 >");
-  //        switch(number) {
-  //          case 1:
-  //            int pushUp = Prompt.inputInt("%d => ", );
-  //
-  //        }
-  //      }
-  //    }
-  //  }
+  public void upAndDel() {
+    if (this.cMenus[0] == null) {
+      System.out.printf("입력된 정보가 없습니다.\n\n");
+    } else {
+      for (int i = 0; i < this.cCount; i++) {
+        this.a = 1 + i;
+        CalisthenicshMenu c = this.cMenus[i];
+        System.out.printf("[%d회차. %s]\n", this.a, c.day);
+      }
+      upAndDelChoice();
+    }
+  }
 
+  public void upAndDelChoice() {
+    int number2 = Prompt.inputInt("\n1.update\n2.Delete\n> ");
+    switch(number2) {
+      case 1:
+        update();
+        break;
+      case 2:
+        delete();
+        break;
+    }
+  }
+
+  public void update() {
+    System.out.println("[수정할 게시물의 번호를 입력해주세요.]");
+    int no = Prompt.inputInt("> ");
+    for (int i = 0; i < this.cCount; i++) {
+      CalisthenicshMenu c = this.cMenus[i];
+      if (c != null && i + 1 == no) {
+        c.pushUp = Integer.parseInt(updateList("푸쉬업> ", c.pushUp));
+        c.dipping = Integer.parseInt(updateList("딥스&스윙> ", c.dipping));
+        c.chinning = Integer.parseInt(updateList("풀업> ", c.chinning));
+        c.hLegRaise = Integer.parseInt(updateList("행잉-레그> ", c.hLegRaise));
+        c.squat = Integer.parseInt(updateList("스쿼트> ", c.squat));
+        c.lunge = Integer.parseInt(updateList("런지> ", c.lunge));
+        c.biceps = Integer.parseInt(updateList("이두> ", c.biceps));
+        c.triceps = Integer.parseInt(updateList("삼두> ", c.triceps));
+        c.running = Integer.parseInt(updateList("러닝> ", c.running));
+        c.hiking = Integer.parseInt(updateList("등산> ", c.hiking));
+        c.rope = Integer.parseInt(updateList("로프> ", c.rope));
+
+        String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
+        if (input.equalsIgnoreCase("y")) {
+          System.out.println("기록을 변경하였습니다.");
+        } else {
+          System.out.println("기록변경을 취소하였습니다.");
+        } 
+      }
+    }
+  }
+
+  public String updateList(String name, int work) {
+    if(work > 0) {
+      String update = Prompt.inputString(name);  
+      return update;
+    }
+    return "";
+  }
+
+  public void delete() {
+    System.out.println("[기록을 삭제할 게시물의 번호를 입력해주세요.]");
+    int no = Prompt.inputInt("> ");
+
+    int i = indexOf(no);
+    if(i == -1) {
+      System.out.println("해당 기록이 존재하지 않습니다.");
+      return;
+    }
+
+    String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N)> ");
+
+    if (input.equalsIgnoreCase("y")) {
+      for (int x= i +1; x < this.cCount; x++) {
+        this.cMenus[x-1] = this.cMenus[x];
+      }
+      cMenus[--this.cCount] = null;
+      System.out.println("기록을 삭제하였습니다.");
+    } else {
+      System.out.println("기록삭제를 취소하였습니다.");
+    }
+  }
+
+  int indexOf(int calisNumber) {
+    for(int i = 0; i < this.cCount; i++) {
+      CalisthenicshMenu cMenu = this.cMenus[i];
+      if(i + 1 == calisNumber) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  CalisthenicshMenu findByNo(int calisNumber) {
+    int i = indexOf(calisNumber);
+    if( i == -1)
+      return null;
+    else
+      return this.cMenus[i];
+  }
 }
+

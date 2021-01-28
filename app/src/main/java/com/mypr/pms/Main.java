@@ -15,7 +15,8 @@ public class Main {
               + "\n2./recode"
               + "\n3./total"
               + "\n4./marathon"
-              + "\n5.exit(quit)"
+              + "\n5./setting"
+              + "\n6.exit(quit)"
               + "\n명령어> ");
       if (command.equalsIgnoreCase("/add")) {
         menu.addMenu();
@@ -25,11 +26,13 @@ public class Main {
         menu.totalMenu();
       } else if (command.equalsIgnoreCase("/marathon")) {
         menu.marathonMenu();
+      } else if (command.equalsIgnoreCase("/setting")) {
+        menu.upAndDel();
       } else if (command.equalsIgnoreCase("exit") || command.equalsIgnoreCase("quit")) {
         System.out.println("수고하셨습니다. 적당히하세요.");
         break;
       } else {
-        System.out.println("잘못된 명령어 입니다.");
+        System.out.printf("잘못된 명령어 입니다.\n");
         continue;
       }
       System.out.println();
