@@ -3,7 +3,6 @@ package com.mypr.pms.handler;
 import com.mypr.pms.Prompt;
 import com.mypr.pms.domain.CalisthenicsTotal;
 import com.mypr.pms.domain.CalisthenicshMenu;
-import sun.lwawt.macosx.CMenu;
 
 public class CalisthenicsMenuHandler {
   static final int SIZE = 100;
@@ -214,27 +213,27 @@ public class CalisthenicsMenuHandler {
     }
   }
 
-  public void update() {
-    System.out.println("[기록변경]");
-    if (this.cMenus[0] == null) {
-      System.out.printf("입력된 정보가 없습니다.\n\n");
-    } else {
-      for (int i = 0; i < this.cCount; i++) {
-        CalisthenicshMenu c = this.cMenus[i];
-        a = i + 1;
-        System.out.printf("[%d. %s]\n", a, c.day);
-      }
-      int number = Prompt.inputInt("> ");
-      if(number == a) {
-        System.out.printf("\n1.상체 전면\n2.상체 후면\n3.팔\n4.하체\n5.유산소\n");
-        number = Prompt.inputInt("수정할 부분 >");
-        switch(number) {
-          case 1:
-            int pushUp = Prompt.inputInt("%d => ", );
-
-        }
-      }
-    }
-  }
+  //  public void update() {
+  //    System.out.println("[기록변경]");
+  //    if (this.cMenus[0] == null) {
+  //      System.out.printf("입력된 정보가 없습니다.\n\n");
+  //    } else {
+  //      for (int i = 0; i < this.cCount; i++) {
+  //        CalisthenicshMenu c = this.cMenus[i];
+  //        a = i + 1;
+  //        System.out.printf("[%d. %s]\n", a, c.day);
+  //      }
+  //      int number = Prompt.inputInt("> ");
+  //      if(number == a) {
+  //        System.out.printf("\n1.상체 전면\n2.상체 후면\n3.팔\n4.하체\n5.유산소\n");
+  //        number = Prompt.inputInt("수정할 부분 >");
+  //        switch(number) {
+  //          case 1:
+  //            int pushUp = Prompt.inputInt("%d => ", );
+  //
+  //        }
+  //      }
+  //    }
+  //  }
 
 }
