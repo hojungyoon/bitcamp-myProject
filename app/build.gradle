@@ -18,6 +18,10 @@ eclipse {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8' // javac -encodin UTF-8
+}
+
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()

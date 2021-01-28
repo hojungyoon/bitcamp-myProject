@@ -10,7 +10,8 @@ public class Main {
 
     while (true) {
       String command = Prompt.inputString(
-          "1./add"
+          "[개인 운동 기록]"
+              + "\n1./add"
               + "\n2./recode"
               + "\n3./total"
               + "\n4./marathon"

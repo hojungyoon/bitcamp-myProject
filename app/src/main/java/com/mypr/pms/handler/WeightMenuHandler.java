@@ -16,8 +16,7 @@ public class WeightMenuHandler {
 
     loop:
       while(true) {
-        int i = Prompt.inputInt("==============================\n"
-            + "1.전면\n2.팔\n3.뒤로가기\n> ");
+        int i = Prompt.inputInt("\n1.전면\n2.팔\n3.뒤로가기\n> ");
         switch(i) {
           case 1:
             w1.dPress = Prompt.inputInt("덤벨프레스 > ");
@@ -75,28 +74,42 @@ public class WeightMenuHandler {
         }
       }
   }
+  int a = 0;
 
   public void weightRecode() {
+    if (this.wMenus[0] == null) {
+      System.out.printf("입력된 정보가 없습니다.\n\n");
+    } else {
+      for (int i = 0; i < this.wCount; i++) {
+        WeightMenu w = this.wMenus[i];
+        System.out.printf("[%d. %s]\n", i+1, w.day);
+      }
+      weightRecodeList();
+    }
+  }
+
+  public void weightRecodeList() {
+    int no = Prompt.inputInt("> ");
     for (int i = 0; i < this.wCount; i++) {
       WeightMenu w = this.wMenus[i];
-      System.out.printf("\n==============================\n");
-      System.out.printf("[%d회차]: %s\n", i+1, w.day);
-      System.out.println("-----[가  슴]-----");
-      recodeOutput("덤벨프레스 : %d회\n", w.dPress);
-      recodeOutput("IN.프 레 스: %d회\n", w.inDpress);
-      recodeOutput("덤벨플라이 : %d회\n", w.dFly);
-      recodeOutput("IN.플 라 이: %d회\n", w.inFly);
-      System.out.println("-----[  팔  ]-----");
-      recodeOutput("이두 덤벨컬 : %d회\n", w.bicepsCurl);
-      recodeOutput("오버헤드익스: %d회\n", w.tricepOver);
-      System.out.println("-----[어  깨]-----");
-      recodeOutput("레터럴라이즈: %d회\n", w.lateralRaise);
-      recodeOutput("숄더 프레스 : %d회\n", w.shoulderPress);
-      recodeOutput("벤 트 오 버 : %d회\n", w.bentoverLateral);
-      System.out.println("-----[전  면]-----");
-      recodeOutput("덤벨 풀오버 : %d회]\n", w.dumbellPullover);
-      System.out.println("==============================");
-    }
+      this.a = i + 1;
+      if (no == i + 1) {
+        System.out.printf("\n[%d회차]: %s\n", i+1, w.day);
+        System.out.println("-----[전  면]-----");
+        recodeOutput("덤벨프레스 : %d회\n", w.dPress);
+        recodeOutput("IN.프 레 스: %d회\n", w.inDpress);
+        recodeOutput("덤벨플라이 : %d회\n", w.dFly);
+        recodeOutput("IN.플 라 이: %d회\n", w.inFly);
+        recodeOutput("덤벨 풀오버 : %d회]\n", w.dumbellPullover);
+        System.out.println("-----[  팔  ]-----");
+        recodeOutput("이두 덤벨컬 : %d회\n", w.bicepsCurl);
+        recodeOutput("오버헤드익스: %d회\n", w.tricepOver);
+        System.out.println("-----[어  깨]-----");
+        recodeOutput("레터럴라이즈: %d회\n", w.lateralRaise);
+        recodeOutput("숄더 프레스 : %d회\n", w.shoulderPress);
+        recodeOutput("벤 트 오 버 : %d회\n", w.bentoverLateral);
+      }
+    } 
   }
 
   public void weightTotal() {
@@ -116,8 +129,7 @@ public class WeightMenuHandler {
       w.dumbellPullover += wt.dumbellPullover;
 
     }
-    System.out.printf("==============================\n");
-    System.out.printf("[운동횟수:%d회]\n", w.today);
+    System.out.printf("\n[운동횟수:%d회]\n", w.today);
     System.out.println("-----[가  슴]-----");
     System.out.printf("덤벨프레스 : %d회\n", w.dPress);
     System.out.printf("IN.프 레 스: %d회\n", w.inDpress);
@@ -131,7 +143,6 @@ public class WeightMenuHandler {
     System.out.printf("레터럴라이즈: %d회\n", w.lateralRaise);
     System.out.printf("숄더 프레스 : %d회\n", w.shoulderPress);
     System.out.printf("벤 트 오 버 : %d회\n", w.bentoverLateral);
-    System.out.println("==============================");
   }
 
   public void recodeOutput(String work, int totals) {
