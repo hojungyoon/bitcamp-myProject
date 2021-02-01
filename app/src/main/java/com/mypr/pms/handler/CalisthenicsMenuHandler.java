@@ -10,8 +10,6 @@ public class CalisthenicsMenuHandler {
   Node first;
   Node last;
   int cCount = 0;
-  Node lastRunCount;
-  Node firstRunCount;
 
   public void calisWorkMenu() {
     CalisthenicshMenu c1 = new CalisthenicshMenu();
@@ -82,26 +80,25 @@ public class CalisthenicsMenuHandler {
         break;
       }
     Node node = new Node(c1);
-
-    if(lastRunCount == null && node.calisMenu.running >= 10) {
-      firstRunCount = node;
-      lastRunCount = node;
-      lastRunCount.calisMenu.runCount += 1;
-    } else if(node.calisMenu.running >= 10) {
-      node.calisMenu.runCount = lastRunCount.calisMenu.runCount + 1;
-      lastRunCount.next = node;
-      node.prev = lastRunCount;
-      lastRunCount = node;
-    }
-
     if(last == null) {
+      if(node.calisMenu.running >= 10) {
+        node.calisMenu.runCount = 1;
+      } else {
+        node.calisMenu.runCount = 0;
+      }
       first = node;
       last = node;
+
     } else {
       last.next = node;
       node.prev = last;
       last = node;
+      node.calisMenu.runCount = node.prev.calisMenu.runCount;
+      if(node.calisMenu.running >= 10) {
+        node.calisMenu.runCount += 1;
+      }
     }
+
 
     this.cCount++;
     node.calisMenu.nums = this.cCount;
@@ -209,20 +206,19 @@ public class CalisthenicsMenuHandler {
 
   public void marathonRecode() {
     Node cursor = first;
-    Node cursor2 = firstRunCount;
-    if (cursor2 == null) {
+    if (cursor == null) {
       massage("아직 마라톤을 진행하지 않았습니다.");
       return;
     } else {
-      while(cursor2 != null) {
-        CalisthenicshMenu m = cursor2.calisMenu;
+      while(cursor != null) {
+        CalisthenicshMenu m = cursor.calisMenu;
         if (m.running >= 10) {
           System.out.printf("[%d회차, %s]\n", m.nums, m.date);
         }
-        cursor2 = cursor2.next;
+        cursor = cursor.next;
       }
       int no = Prompt.inputInt("입력> ");
-      CalisthenicshMenu m = findByNoR(no);
+      CalisthenicshMenu m = findByNo(no);
       if (no == m.nums) {
         System.out.printf("\n마라톤 회차: %d회\n", m.runCount);
         System.out.printf("\n마라톤 완주거리: %d Km\n", m.running);
@@ -363,12 +359,11 @@ public class CalisthenicsMenuHandler {
 
     if (input.equalsIgnoreCase("y")) {
       Node cursor = first;
-      Node cursor2 = firstRunCount;
       while(cursor != null) {
 
         cursor.next.calisMenu.nums -= 1;
         if(cursor.calisMenu.running >= 10) {
-          cursor2.next.calisMenu.runCount -= 1;
+          cursor.next.calisMenu.runCount -= 1;
         }
 
         if(cursor.calisMenu == c) {
@@ -411,17 +406,6 @@ public class CalisthenicsMenuHandler {
     return null;
   }
 
-  CalisthenicshMenu findByNoR(int calisNumber) {
-    Node cursor2 = firstRunCount;
-    while (cursor2 != null) {
-      CalisthenicshMenu c = cursor2.calisMenu;
-      if (c.nums == calisNumber) {
-        return c;
-      }
-      cursor2 = cursor2.next;
-    }
-    return null;
-  }
 
   public static void massage(String massage) {
     System.out.printf("\n-------------------------------\n"
