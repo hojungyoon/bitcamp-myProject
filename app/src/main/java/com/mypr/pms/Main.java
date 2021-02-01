@@ -1,6 +1,8 @@
 package com.mypr.pms;
 
+import com.mypr.pms.handler.CalisthenicsMenuHandler;
 import com.mypr.pms.handler.MenuHandler;
+import com.mypr.util.Prompt;
 
 public class Main {
 
@@ -32,7 +34,7 @@ public class Main {
         System.out.println("수고하셨습니다. 적당히하세요.");
         break;
       } else {
-        System.out.printf("잘못된 명령어 입니다.\n");
+        CalisthenicsMenuHandler.massage("잘못된 명령어 입니다.");
         continue;
       }
       System.out.println();

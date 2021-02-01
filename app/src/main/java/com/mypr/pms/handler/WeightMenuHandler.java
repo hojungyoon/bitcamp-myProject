@@ -1,8 +1,8 @@
 package com.mypr.pms.handler;
 
-import com.mypr.pms.Prompt;
 import com.mypr.pms.domain.WeightMenu;
 import com.mypr.pms.domain.WeightTotal;
+import com.mypr.util.Prompt;
 
 public class WeightMenuHandler {
   static final int SIZE = 100;
@@ -148,6 +148,16 @@ public class WeightMenuHandler {
   public void recodeOutput(String work, int totals) {
     if(totals > 0) {
       System.out.printf(work, totals);
+    }
+  }
+
+  static class Node {
+    WeightMenu weightMenu;
+    Node next;
+    Node prev;
+
+    Node(WeightMenu w) {
+      this.weightMenu = w;
     }
   }
 }

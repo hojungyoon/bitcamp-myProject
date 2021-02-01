@@ -2,8 +2,11 @@
 
 package com.mypr.pms.domain;
 
+import java.sql.Date;
+
 public class CalisthenicshMenu {
-  public String day;
+  public int nums;
+  public Date date;
   public int pushUp;
   public int dipping;
   public int chinning;
@@ -13,6 +16,7 @@ public class CalisthenicshMenu {
   public int triceps;
   public int hLegRaise;
   public int running;
+  public int runCount;
   public String marathonName;
   public int hiking;
   public int rope;

@@ -1,6 +1,6 @@
 package com.mypr.pms.handler;
 
-import com.mypr.pms.Prompt;
+import com.mypr.util.Prompt;
 
 public class MenuHandler {
   CalisthenicsMenuHandler calisWork = new CalisthenicsMenuHandler();

@@ -1,7 +1,6 @@
 package com.mypr.pms.domain;
 
 public class CalisthenicsTotal {
-  public int day = 0;
   public int pushUp = 0;
   public int dipping = 0;
   public int chinning = 0;
