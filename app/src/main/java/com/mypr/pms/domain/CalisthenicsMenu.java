@@ -1,19 +1,33 @@
+
+
 package com.mypr.pms.domain;
 
-public class CalisthenicsTotal {
-  private  int pushUp = 0;
-  private  int dipping = 0;
-  private  int chinning = 0;
-  private  int squat = 0;
-  private  int lunge = 0;
-  private  int biceps = 0;
-  private  int triceps = 0;
-  private  int shoulder = 0;
-  private  int hLegRaise = 0;
-  private  int running = 0;
-  private  int hiking = 0;
-  private  int rope = 0;
+import java.sql.Date;
 
+public class CalisthenicsMenu {
+  private int nums;
+  private  Date date;
+  private  int pushUp;
+  private  int dipping;
+  private  int chinning;
+  private  int squat;
+  private  int lunge;
+  private  int biceps;
+  private  int triceps;
+  private  int hLegRaise;
+
+  public int getNums() {
+    return nums;
+  }
+  public void setNums(int nums) {
+    this.nums = nums;
+  }
+  public Date getDate() {
+    return date;
+  }
+  public void setDate(Date date) {
+    this.date = date;
+  }
   public int getPushUp() {
     return pushUp;
   }
@@ -56,12 +70,6 @@ public class CalisthenicsTotal {
   public void setTriceps(int triceps) {
     this.triceps = triceps;
   }
-  public int getShoulder() {
-    return shoulder;
-  }
-  public void setShoulder(int shoulder) {
-    this.shoulder = shoulder;
-  }
   public int gethLegRaise() {
     return hLegRaise;
   }
@@ -73,6 +81,18 @@ public class CalisthenicsTotal {
   }
   public void setRunning(int running) {
     this.running = running;
+  }
+  public int getRunCount() {
+    return runCount;
+  }
+  public void setRunCount(int runCount) {
+    this.runCount = runCount;
+  }
+  public String getMarathonName() {
+    return marathonName;
+  }
+  public void setMarathonName(String marathonName) {
+    this.marathonName = marathonName;
   }
   public int getHiking() {
     return hiking;
@@ -86,4 +106,9 @@ public class CalisthenicsTotal {
   public void setRope(int rope) {
     this.rope = rope;
   }
+  private  int running;
+  private  int runCount;
+  private  String marathonName;
+  private  int hiking;
+  private  int rope;
 }
