@@ -15,6 +15,10 @@ public class CalisthenicsMenu {
   private  int biceps;
   private  int triceps;
   private  int hLegRaise;
+  private  int running;
+  private  String marathonName;
+  private  int hiking;
+  private  int rope;
 
   public int getNums() {
     return nums;
@@ -82,12 +86,6 @@ public class CalisthenicsMenu {
   public void setRunning(int running) {
     this.running = running;
   }
-  public int getRunCount() {
-    return runCount;
-  }
-  public void setRunCount(int runCount) {
-    this.runCount = runCount;
-  }
   public String getMarathonName() {
     return marathonName;
   }
@@ -106,9 +104,5 @@ public class CalisthenicsMenu {
   public void setRope(int rope) {
     this.rope = rope;
   }
-  private  int running;
-  private  int runCount;
-  private  String marathonName;
-  private  int hiking;
-  private  int rope;
+
 }

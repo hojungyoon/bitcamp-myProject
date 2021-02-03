@@ -31,7 +31,7 @@ public class MenuHandler {
           + "2.Weight\n"
           + "> ");
       if(choice == 1) {
-        calisWork.calisRecode();
+        calisWork.calisRecodeList();
       } else if (choice == 2) {
         weightWork.weightRecode();
       } else {

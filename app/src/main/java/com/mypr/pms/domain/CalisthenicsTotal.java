@@ -13,7 +13,14 @@ public class CalisthenicsTotal {
   private  int running = 0;
   private  int hiking = 0;
   private  int rope = 0;
+  private  int runCount;
 
+  public int getRunCount() {
+    return runCount;
+  }
+  public void setRunCount(int runCount) {
+    this.runCount = runCount;
+  }
   public int getPushUp() {
     return pushUp;
   }

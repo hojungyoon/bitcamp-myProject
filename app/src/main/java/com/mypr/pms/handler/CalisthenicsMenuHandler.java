@@ -3,14 +3,17 @@ package com.mypr.pms.handler;
 import java.sql.Date;
 import com.mypr.pms.domain.CalisthenicsMenu;
 import com.mypr.pms.domain.CalisthenicsTotal;
+import com.mypr.util.List;
 import com.mypr.util.Prompt;
 
 public class CalisthenicsMenuHandler {
 
-  CalisthenicsList calisList = new CalisthenicsList();
+  private List calisList = new List();
 
   public void calisWorkMenu() {
     CalisthenicsMenu c1 = new CalisthenicsMenu();
+    System.out.printf("\n현재까지 진행한 회차는(%d)회 입니다.", calisList.count);
+    c1.setNums(Prompt.inputInt("\n회차 > "));
     loop:
       while(true) {
         int i = Prompt.inputInt("\n"
@@ -51,6 +54,7 @@ public class CalisthenicsMenuHandler {
           case 3:
             c1.setRunning(Prompt.inputInt("러 닝(km) > "));
             if (c1.getRunning() >=10 ) {
+              calisList.rCount++;
               c1.setMarathonName(Prompt.inputString("대회 이름 > "));
               if(c1.getMarathonName() == "") {
                 String practice = "연습";
@@ -77,19 +81,25 @@ public class CalisthenicsMenuHandler {
     massage("기록이 등록되었습니다.");
   }
 
-  public void calisRecode() {
+  public void calisRecodeList() {
     System.out.println();
-    CalisthenicsMenu[] calisMenu = calisList.toArray();
-    for(CalisthenicsMenu c : calisMenu) {
-      if (c != null) {
+    Object[] calisMenu = calisList.toArray();
+    if (calisMenu != null) {
+      for(Object list : calisMenu) {
+        CalisthenicsMenu c = (CalisthenicsMenu) list;
         System.out.printf("[%d회차. %s]\n", c.getNums(), c.getDate());
-      } else {
-        massage("입력된 정보가 없습니다.");
       }
+      todayRecode();
+    } else {
+      massage("입력된 정보가 없습니다.");
+      return;
     }
+  }
+
+  void todayRecode() {
     while(true) {
       int no = Prompt.inputInt("> ");
-      CalisthenicsMenu c1 = calisList.get(no);
+      CalisthenicsMenu c1 = findByNo(no);
       if (no == c1.getNums()) {
         System.out.printf("\n[%d회차]: %s\n", c1.getNums(), c1.getNums());
         System.out.println("-----[상  체]-----");
@@ -132,96 +142,8 @@ public class CalisthenicsMenuHandler {
     }
   }
 
-  int a = 0;
-  int b = 0;
-  int c = 0;
-  int d = 0;
-  int e = 0;
-  int f = 0;
-  int g = 0;
-  int h = 0;
-  int i = 0;
-  int j = 0;
-  int k = 0;
-
-  public void calisTotal() {
-    CalisthenicsTotal t = new CalisthenicsTotal();
-    CalisthenicsMenu[] calisMenu = calisList.toArray();
-    for(CalisthenicsMenu c : calisMenu) {
-      if (c == null) {
-        massage("아직 입력된 값이 없습니다.");
-      } else {
-        a += c.getPushUp();
-        b += c.getDipping();
-        this.c += c.getChinning();
-        d += c.gethLegRaise();
-        e += c.getSquat();
-        f += c.getLunge();
-        g += c.getBiceps();
-        h += c.getTriceps();
-        i += c.getRunning();
-        j += c.getHiking();
-        k += c.getRope();
-
-        t.setPushUp(a);
-        t.setDipping(b);
-        t.setChinning(this.c);
-        t.sethLegRaise(d);
-        t.setSquat(e);
-        t.setLunge(f);
-        t.setBiceps(g);
-        t.setTriceps(h);
-        t.setRunning(i);
-        t.setHiking(j);
-        t.setRope(k);
-      }
-    }
-    System.out.printf("\n[운동횟수:%d회]\n", calisList.lastNum());
-    System.out.println("-----[상  체]-----");
-    System.out.printf("푸 쉬 업 : %d회\n", t.getPushUp());
-    System.out.printf("딥스&스윙: %d회\n", t.getDipping());
-    System.out.printf("풀     업: %d회\n", t.getChinning());
-    System.out.printf("행잉-레그: %d회\n", t.gethLegRaise());
-    System.out.println("-----[하  체]-----");
-    System.out.printf("스 쿼 트 : %d회\n", t.getSquat());
-    System.out.printf("런     지: %d회\n", t.getLunge());
-    System.out.println("-----[  팔  ]-----");
-    System.out.printf("이     두: %d회\n", t.getBiceps());
-    System.out.printf("삼     두: %d회\n", t.getTriceps());
-    System.out.println("-----[유산소]-----");
-    System.out.printf("러     닝: %dkm\n", t.getRunning());
-    System.out.printf("등     산: %d분\n", t.getHiking());
-    System.out.printf("배틀 로프: %d회\n", t.getRope());
-
-  }
-
-
-  public void marathonRecode() {
-    CalisthenicsMenu[] calisMenu = calisList.toArray();
-    for(CalisthenicsMenu c : calisMenu) {
-      if (c == null) {
-        massage("아직 마라톤을 진행하지 않았습니다.");
-        return;
-      } else {
-        if (c.getRunning() >= 10) {
-          System.out.printf("[%d회차, %s]\n", c.getNums(), c.getDate());
-        }
-      }
-    }
-    int no = Prompt.inputInt("입력> ");
-    CalisthenicsMenu m = calisList.get(no);
-    if (no == m.getNums()) {
-      System.out.printf("\n마라톤 회차: %d회\n", m.getRunCount());
-      System.out.printf("\n마라톤 완주거리: %d Km\n", m.getRunning());
-      System.out.printf(String.format("마라톤 완주일자: %s\n", m.getDate()));
-      System.out.printf("마라톤 대회이름: %s\n", m.getMarathonName());
-      System.out.println("------------------------------");
-    }
-  }
-
-
   public void update(int number) {
-    CalisthenicsMenu c = calisList.get(number);
+    CalisthenicsMenu c = findByNo(number);
     if (c == null) {
       massage("입력된 정보가 없습니다.");
       return;
@@ -301,15 +223,97 @@ public class CalisthenicsMenuHandler {
   }
 
   public void delete(int number) {
+    CalisthenicsMenu c = findByNo(number);
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N)> ");
 
+    //    Object[] calisMenu = calisList.toArray();
+    //    for(Object list : calisMenu) {
+    //      if (c.getNums() < calisList.count) {
+    //        c1.setNums(c1.getNums()-1);
+    //      }
+    //      CalisthenicsMenu c1 = (CalisthenicsMenu) list;
+    //    }
+
     if (input.equalsIgnoreCase("y")) {
-      calisList.delete(number);
+      calisList.delete(c);
+
       massage("기록을 삭제하였습니다.");
     } else {
       massage("기록삭제를 취소하였습니다.");
     }
   }
+
+
+  protected int a, b, c, d, e, f, g, h, i, j, k;
+
+
+  public void calisTotal() {
+    CalisthenicsTotal t = new CalisthenicsTotal();
+    Object[] calisMenu = calisList.toArray();
+    for(Object list : calisMenu) {
+      CalisthenicsMenu c = (CalisthenicsMenu) list;
+      if (c == null) {
+        massage("아직 입력된 값이 없습니다.");
+      } else {
+        t.setPushUp(a += c.getPushUp());
+        t.setDipping(b += c.getDipping());
+        t.setChinning(this.c += c.getChinning());
+        t.sethLegRaise(d += c.gethLegRaise());
+        t.setSquat(e += c.getSquat());
+        t.setLunge(f += c.getLunge());
+        t.setBiceps(g += c.getBiceps());
+        t.setTriceps(h += c.getTriceps());
+        t.setRunning(i += c.getRunning());
+        t.setHiking(j += c.getHiking());
+        t.setRope(k += c.getRope());
+      }
+    }
+    System.out.printf("\n[운동횟수:%d회]\n", calisList.count);
+    System.out.printf("[마라톤횟수:%d회]\n", calisList.rCount);
+    System.out.println("-----[상  체]-----");
+    System.out.printf("푸 쉬 업 : %d회\n", t.getPushUp());
+    System.out.printf("딥스&스윙: %d회\n", t.getDipping());
+    System.out.printf("풀     업: %d회\n", t.getChinning());
+    System.out.printf("행잉-레그: %d회\n", t.gethLegRaise());
+    System.out.println("-----[하  체]-----");
+    System.out.printf("스 쿼 트 : %d회\n", t.getSquat());
+    System.out.printf("런     지: %d회\n", t.getLunge());
+    System.out.println("-----[  팔  ]-----");
+    System.out.printf("이     두: %d회\n", t.getBiceps());
+    System.out.printf("삼     두: %d회\n", t.getTriceps());
+    System.out.println("-----[유산소]-----");
+    System.out.printf("러     닝: %dkm\n", t.getRunning());
+    System.out.printf("등     산: %d분\n", t.getHiking());
+    System.out.printf("배틀 로프: %d회\n", t.getRope());
+
+  }
+
+
+  public void marathonRecode() {
+    Object[] calisMenu = calisList.toArray();
+    for(Object list : calisMenu) {
+      CalisthenicsMenu c = (CalisthenicsMenu)list;
+      if (c == null) {
+        massage("아직 마라톤을 진행하지 않았습니다.");
+        return;
+      } else {
+        if (c.getRunning() >= 10) {
+          System.out.printf("[%d회차, %s]\n", c.getNums(), c.getDate());
+        }
+      }
+    }
+    int no = Prompt.inputInt("입력> ");
+    CalisthenicsMenu m = findByNo(no);
+    if (no == m.getNums()) {
+      System.out.printf("\n마라톤 회차: %d회\n", marathonCount(m.getRunning()));
+      System.out.printf("\n마라톤 완주거리: %d Km\n", m.getRunning());
+      System.out.printf(String.format("마라톤 완주일자: %s\n", m.getDate()));
+      System.out.printf("마라톤 대회이름: %s\n", m.getMarathonName());
+      System.out.println("------------------------------");
+    }
+  }
+
+
 
   public static void massage(String massage) {
     System.out.printf("\n-------------------------------\n"
@@ -331,10 +335,34 @@ public class CalisthenicsMenuHandler {
     }
   }
 
-  void recodeOutput(String work, int totals) {
+  private void recodeOutput(String work, int totals) {
     if (totals > 0) {
       System.out.printf(work, totals);
     }
+  }
+
+  private CalisthenicsMenu findByNo(int calisNo) {
+    Object[] list = calisList.toArray();
+    for (Object obj : list) {
+      CalisthenicsMenu b = (CalisthenicsMenu) obj;
+      if (b.getNums() == calisNo) {
+        return b;
+      }
+    }
+    return null;
+  }
+
+  private int marathonCount(int num) {
+    Object[] calisMenu = calisList.toArray();
+    for(Object list : calisMenu) {
+      if (num >= 10) {
+        CalisthenicsTotal t = new CalisthenicsTotal();
+        int m1 = 0;
+        t.setRunCount(m1 += 1);
+        return t.getRunCount();
+      }
+    }
+    return 0;
   }
 
 }

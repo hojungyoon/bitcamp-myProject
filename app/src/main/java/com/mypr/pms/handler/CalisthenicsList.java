@@ -28,6 +28,8 @@ public class CalisthenicsList {
       last.calisMenu.setNums(last.prev.calisMenu.getNums() + 1);
       if(node.calisMenu.getRunning() >= 10) {
         last.calisMenu.setRunCount(last.prev.calisMenu.getRunCount() + 1);
+      } else {
+        last.calisMenu.setRunCount(last.prev.calisMenu.getRunCount());
       }
     }
     this.cCount++;
