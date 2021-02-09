@@ -7,7 +7,7 @@ public class List {
   public int rCount = 0;
 
 
-  static class Node {
+  class Node {
     Object obj;
     Node next;
     Node prev;

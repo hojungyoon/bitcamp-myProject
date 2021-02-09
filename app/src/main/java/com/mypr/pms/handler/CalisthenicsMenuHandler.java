@@ -9,6 +9,7 @@ import com.mypr.util.Prompt;
 public class CalisthenicsMenuHandler {
 
   private List calisList = new List();
+  private int cCount = 0;
 
   public void calisWorkMenu() {
     CalisthenicsMenu c1 = new CalisthenicsMenu();
@@ -237,6 +238,16 @@ public class CalisthenicsMenuHandler {
     if (input.equalsIgnoreCase("y")) {
       calisList.delete(c);
 
+
+      int index = number + 1;
+
+      c = findByNo(index);
+
+      while (c != null) {
+        c = findByNo(index);
+        c.setNums(c.getNums() - 1);
+        index++;
+      }
       massage("기록을 삭제하였습니다.");
     } else {
       massage("기록삭제를 취소하였습니다.");
@@ -244,7 +255,7 @@ public class CalisthenicsMenuHandler {
   }
 
 
-  protected int a, b, c, d, e, f, g, h, i, j, k;
+  private int a, b, c, d, e, f, g, h, i, j, k;
 
 
   public void calisTotal() {
@@ -269,7 +280,7 @@ public class CalisthenicsMenuHandler {
       }
     }
     System.out.printf("\n[운동횟수:%d회]\n", calisList.count);
-    System.out.printf("[마라톤횟수:%d회]\n", calisList.rCount);
+    //   System.out.printf("[마라톤횟수:%d회]\n", calisList.rCount);
     System.out.println("-----[상  체]-----");
     System.out.printf("푸 쉬 업 : %d회\n", t.getPushUp());
     System.out.printf("딥스&스윙: %d회\n", t.getDipping());

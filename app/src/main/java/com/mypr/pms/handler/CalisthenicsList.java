@@ -13,11 +13,6 @@ public class CalisthenicsList {
   public void add(CalisthenicsMenu c) {
     Node node = new Node(c);
     if(last == null) {
-      if(node.calisMenu.getRunning() >= 10) {
-        node.calisMenu.setRunCount(runCount + 1);
-      } else {
-        node.calisMenu.setRunCount(runCount);
-      }
       node.calisMenu.setNums(numCount + 1);
       first = node;
       last = node;
@@ -26,11 +21,6 @@ public class CalisthenicsList {
       node.prev = last;
       last = node;
       last.calisMenu.setNums(last.prev.calisMenu.getNums() + 1);
-      if(node.calisMenu.getRunning() >= 10) {
-        last.calisMenu.setRunCount(last.prev.calisMenu.getRunCount() + 1);
-      } else {
-        last.calisMenu.setRunCount(last.prev.calisMenu.getRunCount());
-      }
     }
     this.cCount++;
   }
