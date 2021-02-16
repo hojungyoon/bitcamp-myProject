@@ -6,7 +6,7 @@ import com.mypr.util.Prompt;
 
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws CloneNotSupportedException {
 
     MenuHandler menu = new MenuHandler();
 
@@ -38,4 +38,3 @@ public class Main {
     }
   }
 }
-

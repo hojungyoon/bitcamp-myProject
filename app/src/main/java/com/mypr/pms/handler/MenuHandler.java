@@ -24,7 +24,7 @@ public class MenuHandler {
     }
   }
 
-  public void recodeMenu() {
+  public void recodeMenu() throws CloneNotSupportedException {
     while(true) {
       int choice = Prompt.inputInt("\n"
           + "1.Calisthenics\n"
@@ -33,7 +33,7 @@ public class MenuHandler {
       if(choice == 1) {
         calisWork.calisRecodeList();
       } else if (choice == 2) {
-        weightWork.weightRecode();
+        weightWork.weightRecodeList();
       } else {
         System.out.println("재입력 바랍니다.");
         continue;

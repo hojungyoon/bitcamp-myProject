@@ -1,24 +1,31 @@
 package com.mypr.util;
 
-public class List {
-  private Node first;
-  private Node last;
-  public int count = 0;
-  public int rCount = 0;
+import java.lang.reflect.Array;
+
+public class List<E> {
+
+  private Node<E> first;
+  private Node<E> last;
+  protected int count = 0;
+
+  public int count() {
+    return this.count;
+  }
 
 
-  class Node {
-    Object obj;
-    Node next;
-    Node prev;
+  private static class Node<T> {
+    T obj;
+    Node<T> next;
+    Node<T> prev;
 
-    Node(Object obj) {
+    Node(T obj) {
       this.obj = obj;
     }
   }
 
-  public void add(Object obj) {
-    Node node = new Node(obj);
+  public void add(E obj) {
+    Node<E> node = new Node<>(obj);
+
     if(last == null) {
       first = node;
       last = node;
@@ -27,6 +34,7 @@ public class List {
       node.prev = last;
       last = node;
     }
+
     this.count++;
   }
 
@@ -34,7 +42,7 @@ public class List {
   public Object[] toArray() {
     Object[] arr = new Object[count];
 
-    Node cursor = this.first;
+    Node<E> cursor = this.first;
     int i = 0;
 
     while(cursor != null) {
@@ -44,14 +52,31 @@ public class List {
     return arr;
   }
 
-  public Object get(int index) {
+  @SuppressWarnings("unchecked")
+  public E[] toArray(E[] arr) {
+
+    if (arr.length < count) {
+      // 파라미터로 받은 배열이 현재 저장된 항목의 크기 보다 작을 경우
+      // 새 배열을 만든다.
+      arr = (E[]) Array.newInstance(arr.getClass().getComponentType(), count);
+    }
+    Node<E> cursor = this.first;
+    for (int i = 0; i < count; i++) {
+      arr[i] = cursor.obj;
+      cursor = cursor.next;
+    }
+    return arr;
+  }
+
+
+  public E get(int index) {
     if(index < 0 || index > this.count) {
       return null;
     }
     int counts = 0;
-    Node cursor = this.first;
+    Node<E> cursor = this.first;
     while (cursor != null) {
-      if (index == count++) {
+      if (index == counts++) {
         return cursor.obj;
       }
       cursor = cursor.next;
@@ -59,8 +84,8 @@ public class List {
     return null;
   }
 
-  public boolean delete(Object obj) {
-    Node cursor = first;
+  public boolean delete(E obj) {
+    Node<E> cursor = first;
     while(cursor != null) {
       if(cursor.obj.equals(obj)) {
         this.count--;
@@ -87,14 +112,14 @@ public class List {
     return false;
   }
 
-  public Object delete(int index) {
+  public E delete(int index) {
     if (index < 0 || index >= this.count) {
       return null;
     }
 
-    Object deleted = null;
+    E deleted = null;
     int count = 0;
-    Node cursor = first;
+    Node<E> cursor = first;
     while (cursor != null) {
       if (index == count++) {
         deleted = cursor.obj; // 삭제될 항목을 보관해 둔다.
@@ -120,6 +145,22 @@ public class List {
       cursor = cursor.next;
     }
     return deleted;
+  }
+
+  public Iterator<E> iterator() throws CloneNotSupportedException {
+    return new Iterator<E>() {
+      int cursor = 0;
+
+      @Override
+      public boolean hasNext() {
+        return cursor < List.this.count();
+      }
+
+      @Override
+      public E next() {
+        return List.this.get(cursor++);
+      }
+    };
   }
 
 }
