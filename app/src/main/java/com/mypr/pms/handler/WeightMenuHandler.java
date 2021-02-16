@@ -184,39 +184,40 @@ public class WeightMenuHandler {
     }
   }
 
-
-
   public void weightTotal() {
-    WeightTotal w = new WeightTotal();
-    for (int i = 0; i < this.wCount; i++) {
-      WeightMenu wt = this.wMenus[i];
-      w.today = i+1;
-      w.dPress += wt.dPress;
-      w.inDpress+= wt.inDpress;
-      w.dFly += wt.dFly;
-      w.inFly += wt.inFly;
-      w.bicepsCurl += wt.bicepsCurl;
-      w.tricepOver += wt.tricepOver;
-      w.lateralRaise += wt.lateralRaise;
-      w.shoulderPress += wt.shoulderPress;
-      w.bentoverLateral += wt.bentoverLateral;
-      w.dumbellPullover += wt.dumbellPullover;
+    WeightTotal t = new WeightTotal();
+    WeightMenu[] wMenu = weightList.toArray(new WeightMenu[weightList.count()]); 
+    if (wMenu.length == 0) {
+      System.out.printf("\n입력된 정보가 없습니다.\n");
+      return;
+    }
+    for (WeightMenu w : wMenu) {
+      t.setdPress(t.getdPress() + w.getdPress());
+      t.setInDpress(t.getInDpress() + w.getInDpress());
+      t.setdFly(t.getdFly() + w.getdFly());
+      t.setInFly(t.getInFly() + w.getInFly());
+      t.setBicepsCurl(t.getBicepsCurl() + w.getBicepsCurl());
+      t.setTricepOver(t.getTricepOver() + w.getTricepOver());
+      t.setLateralRaise(t.getLateralRaise() + w.getLateralRaise());
+      t.setShoulderPress(t.getShoulderPress() + w.getShoulderPress());
+      t.setBentoverLateral(t.getBentoverLateral() + w.getBentoverLateral());
+      t.setDumbellPullover(t.getDumbellPullover() + w.getDumbellPullover());
 
     }
-    System.out.printf("\n[운동횟수:%d회]\n", w.today);
+    System.out.printf("\n[운동횟수:%d회]\n", weightList.count());
     System.out.println("-----[가  슴]-----");
-    System.out.printf("덤벨프레스 : %d회\n", w.dPress);
-    System.out.printf("IN.프 레 스: %d회\n", w.inDpress);
-    System.out.printf("덤벨플라이 : %d회\n", w.dFly);
-    System.out.printf("IN.플 라 이: %d회\n", w.inFly);
-    System.out.printf("덤벨 풀오버 : %d회\n", w.dumbellPullover);
+    System.out.printf("덤벨프레스 : %d회\n", t.getdPress());
+    System.out.printf("IN.프 레 스: %d회\n", t.getInDpress());
+    System.out.printf("덤벨플라이 : %d회\n", t.getdFly());
+    System.out.printf("IN.플 라 이: %d회\n", t.getInFly());
+    System.out.printf("덤벨 풀오버 : %d회\n", t.getDumbellPullover());
     System.out.println("-----[  팔  ]-----");
-    System.out.printf("이두 덤벨컬 : %d회\n", w.bicepsCurl);
-    System.out.printf("오버헤드익스: %d회\n", w.tricepOver);
+    System.out.printf("이두 덤벨컬 : %d회\n", t.getBicepsCurl());
+    System.out.printf("오버헤드익스: %d회\n", t.getTricepOver());
     System.out.println("-----[어  깨]-----");
-    System.out.printf("레터럴라이즈: %d회\n", w.lateralRaise);
-    System.out.printf("숄더 프레스 : %d회\n", w.shoulderPress);
-    System.out.printf("벤 트 오 버 : %d회\n", w.bentoverLateral);
+    System.out.printf("레터럴라이즈: %d회\n", t.getLateralRaise());
+    System.out.printf("숄더 프레스 : %d회\n", t.getShoulderPress());
+    System.out.printf("벤 트 오 버 : %d회\n", t.getBentoverLateral());
   }
 
   public void recodeOutput(String work, int totals) {

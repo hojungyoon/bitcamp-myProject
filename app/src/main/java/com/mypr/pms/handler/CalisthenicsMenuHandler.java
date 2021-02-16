@@ -219,7 +219,6 @@ public class CalisthenicsMenuHandler {
     }
   }
 
-
   public void calisTotal() {
     CalisthenicsTotal t = new CalisthenicsTotal();
     CalisthenicsMenu[] calisMenu = calisList.toArray(new CalisthenicsMenu[calisList.count()]);
