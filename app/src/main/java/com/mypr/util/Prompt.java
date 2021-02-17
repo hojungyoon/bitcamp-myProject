@@ -1,6 +1,5 @@
 package com.mypr.util;
 
-import java.sql.Date;
 import java.util.Scanner;
 
 public class Prompt {
@@ -11,12 +10,12 @@ public class Prompt {
     return scanner.nextLine();
   }
 
-  public static int inputInt(String title) {
-    return Integer.parseInt(inputString(title));
+  public static double inputDouble(String title) {
+    return Double.parseDouble(inputString(title));
   }
 
-  public static Date inputDay(String title) {
-    return Date.valueOf(inputString(title));
+  public static int inputInt(String title) {
+    return Integer.parseInt(inputString(title));
   }
 
   static void close() {

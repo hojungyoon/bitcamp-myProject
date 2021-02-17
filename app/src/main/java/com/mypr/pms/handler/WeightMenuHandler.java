@@ -1,26 +1,26 @@
 package com.mypr.pms.handler;
 
 import java.sql.Date;
+import java.util.LinkedList;
 import com.mypr.pms.domain.WeightMenu;
 import com.mypr.pms.domain.WeightTotal;
-import com.mypr.util.List;
 import com.mypr.util.Prompt;
 
 public class WeightMenuHandler {
 
-  private List<WeightMenu> weightList = new List<>();
-  private int wCount = 0;
+  private LinkedList<WeightMenu> weightList = new LinkedList<>();
+  private int count = 0;
 
   public void weightWorkMenu() {
     WeightMenu w = new WeightMenu();
-    System.out.printf("\n현재까지 진행한 회차는(%d)회 입니다.", weightList.count());
+    System.out.printf("\n현재까지 진행한 회차는(%d)회 입니다.", count);
     w.setNums(Prompt.inputInt("\n회차를 입력해주세요 : "));
     loop:
       while(true) {
         int i = Prompt.inputInt("\n1.전면\n2.팔\n3.뒤로가기\n> ");
         switch(i) {
           case 1:
-            w.setdPress(Prompt.inputInt("덤벨프); = 레스 > "));
+            w.setdPress(Prompt.inputInt("덤벨프레스 > "));
             w.setInDpress(Prompt.inputInt("IN.프레스 > "));
             w.setdFly(Prompt.inputInt("덤벨플라이 > "));
             w.setInFly(Prompt.inputInt("IN.플라이 > "));
@@ -44,15 +44,17 @@ public class WeightMenuHandler {
           continue loop;
         }
         w.setDate(new Date(System.currentTimeMillis()));
-        weightList.add(w);
-        massage("기록이 등록되었습니다.");
+        break;
       }
+    count++;
+    weightList.add(w);
+    massage("기록이 등록되었습니다.");
   }
 
 
   public void weightRecodeList() {
     System.out.println();
-    WeightMenu[] weightMenu = weightList.toArray(new WeightMenu[weightList.count()]);
+    WeightMenu[] weightMenu = weightList.toArray(new WeightMenu[count]);
     if (weightMenu.length == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
       return;
@@ -177,7 +179,7 @@ public class WeightMenuHandler {
         index++;
       }
 
-      weightList.delete(c);
+      weightList.remove(c);
       massage("기록을 삭제하였습니다.");
     } else {
       massage("기록삭제를 취소하였습니다.");
@@ -186,7 +188,7 @@ public class WeightMenuHandler {
 
   public void weightTotal() {
     WeightTotal t = new WeightTotal();
-    WeightMenu[] wMenu = weightList.toArray(new WeightMenu[weightList.count()]); 
+    WeightMenu[] wMenu = weightList.toArray(new WeightMenu[count]); 
     if (wMenu.length == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
       return;
@@ -204,7 +206,7 @@ public class WeightMenuHandler {
       t.setDumbellPullover(t.getDumbellPullover() + w.getDumbellPullover());
 
     }
-    System.out.printf("\n[운동횟수:%d회]\n", weightList.count());
+    System.out.printf("\n[운동횟수:%d회]\n", count);
     System.out.println("-----[가  슴]-----");
     System.out.printf("덤벨프레스 : %d회\n", t.getdPress());
     System.out.printf("IN.프 레 스: %d회\n", t.getInDpress());
@@ -248,7 +250,7 @@ public class WeightMenuHandler {
 
 
   private WeightMenu findByNo(int weightNo) {
-    WeightMenu[] list = weightList.toArray(new WeightMenu[weightList.count()]);
+    WeightMenu[] list = weightList.toArray(new WeightMenu[count]);
     for (WeightMenu w : list) {
       if (w.getNums() == weightNo) {
         return w;

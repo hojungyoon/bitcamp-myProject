@@ -1,21 +1,21 @@
 package com.mypr.pms.handler;
 
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import com.mypr.pms.domain.CalisthenicsMenu;
 import com.mypr.pms.domain.CalisthenicsTotal;
-import com.mypr.util.List;
 import com.mypr.util.Prompt;
 
 public class CalisthenicsMenuHandler {
 
-  private List<CalisthenicsMenu> calisList = new List<>();
+  private LinkedList<CalisthenicsMenu> calisList = new LinkedList<>();
   private int rCount = 0;
-  private int mNum = 1;
+  private int count = 0; 
 
   public void calisWorkMenu() {
     CalisthenicsMenu c = new CalisthenicsMenu();
-    System.out.printf("\n현재까지 진행한 회차는(%d)회 입니다.", calisList.count());
+    System.out.printf("\n현재까지 진행한 회차는(%d)회 입니다.", this.count);
     c.setNums(Prompt.inputInt("\n회차를 입력해주세요 : "));
     loop:
       while(true) {
@@ -46,7 +46,6 @@ public class CalisthenicsMenuHandler {
           case 3:
             c.setRunning(Prompt.inputInt("러 닝(km) > "));
             if (c.getRunning() >=10 ) {
-              rCount += 1;
               c.setMarathonName(Prompt.inputString("대회 이름 > "));
               if(c.getMarathonName() == "") {
                 String practice = "연습";
@@ -69,13 +68,17 @@ public class CalisthenicsMenuHandler {
         c.setDate(new Date(System.currentTimeMillis()));
         break;
       }
+    if (c.getRunning() >= 10) {
+      rCount += 1;
+    }
+    count++;
     calisList.add(c);
     massage("기록이 등록되었습니다.");
   }
 
   public void calisRecodeList() throws CloneNotSupportedException{
     System.out.println();
-    CalisthenicsMenu[] calisMenu = calisList.toArray(new CalisthenicsMenu[calisList.count()]);
+    CalisthenicsMenu[] calisMenu = calisList.toArray(new CalisthenicsMenu[count]);
     if(calisMenu.length == 0) {
       System.out.println("\n입력된 정보가 없습니다.\n");
       return;
@@ -170,6 +173,7 @@ public class CalisthenicsMenuHandler {
             if(c.getMarathonName() == "") {
               String practice = "연습";
               c.setMarathonName(practice);
+              rCount += 1;
             }
           }
           break;
@@ -212,7 +216,7 @@ public class CalisthenicsMenuHandler {
         index++;
       }
 
-      calisList.delete(c);
+      calisList.remove(c);
       massage("기록을 삭제하였습니다.");
     } else {
       massage("기록삭제를 취소하였습니다.");
@@ -221,7 +225,7 @@ public class CalisthenicsMenuHandler {
 
   public void calisTotal() {
     CalisthenicsTotal t = new CalisthenicsTotal();
-    CalisthenicsMenu[] calisMenu = calisList.toArray(new CalisthenicsMenu[calisList.count()]);
+    CalisthenicsMenu[] calisMenu = calisList.toArray(new CalisthenicsMenu[count]);
     if (calisMenu.length == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
       return;
@@ -237,7 +241,7 @@ public class CalisthenicsMenuHandler {
       t.setHiking(t.getHiking() + c.getHiking());
       t.setRope(t.getRope() + c.getRope());
     }
-    System.out.printf("\n[운동횟수:%d회]\n", calisList.count());
+    System.out.printf("\n[운동횟수:%d회]\n", count);
     //   System.out.printf("[마라톤횟수:%d회]\n", calisList.rCount);
     System.out.println("-----[상  체]-----");
     System.out.printf("푸 쉬 업 : %d회\n", t.getPushUp());
@@ -255,20 +259,17 @@ public class CalisthenicsMenuHandler {
   }
 
   public void marathonRecode() {
-    CalisthenicsMenu[] calisMenu = calisList.toArray(new CalisthenicsMenu[calisList.count()]);
-    if (calisList.count() > 0) {
+    if (count == 0) {
+      System.out.printf("\n입력된 정보가 없습니다.\n");
+    } else {
+      Iterator<CalisthenicsMenu> iterator = calisList.iterator();
       System.out.printf("\n마라톤 회차: %d회\n", rCount);
-      ArrayList<String> running = new ArrayList<String>();
-      for (CalisthenicsMenu c : calisMenu) {
+      while (iterator.hasNext()) {
+        CalisthenicsMenu c = iterator.next();
         if (c.getRunning() >= 10) {
-          String r = String.format("[%d회차, %s]\n", mNum, c.getDate());
-          running.add(r);
+          System.out.printf("[%d회차, %s]\n", c.getNums(), c.getDate());
         }
-        mNum++;
-      }
 
-      for (int i = 0; i < running.size(); i++) {
-        System.out.println(running.get(i));
       }
 
       int no = Prompt.inputInt("입력> ");
@@ -279,11 +280,9 @@ public class CalisthenicsMenuHandler {
         System.out.printf("마라톤 대회이름: %s\n", m.getMarathonName());
         System.out.println("------------------------------");
       }
-    } else {
-      System.out.printf("\n입력된 값이 없습니다.\n");
-      return;
     }
   }
+
 
 
 
@@ -314,7 +313,7 @@ public class CalisthenicsMenuHandler {
   }
 
   private CalisthenicsMenu findByNo(int calisNo) {
-    CalisthenicsMenu[] list = calisList.toArray(new CalisthenicsMenu[calisList.count()]);
+    CalisthenicsMenu[] list = calisList.toArray(new CalisthenicsMenu[count]);
     for (CalisthenicsMenu b : list) {
       if (b.getNums() == calisNo) {
         return b;

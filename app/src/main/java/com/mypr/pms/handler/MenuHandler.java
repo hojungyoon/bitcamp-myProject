@@ -10,8 +10,8 @@ public class MenuHandler {
     while(true) {
       int choice = Prompt.inputInt("\n"
           + "1.Calisthenics"
-          + "\n2.Weight\n"
-          + "> ");
+          + "\n2.Weight"
+          + "\n> ");
       if(choice == 1) {
         calisWork.calisWorkMenu();
       } else if (choice == 2) {
