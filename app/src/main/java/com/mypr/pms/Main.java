@@ -22,37 +22,40 @@ public class Main {
               + "\n2./recode"
               + "\n3./total"
               + "\n4./marathon"
-              + "\n5./history"
-              + "\n5./history2"
-              + "\n7.exit(quit)"
+              + "\n5./bodycheck"
+              + "\n6./history"
+              + "\n7./history2"
+              + "\n8. exit(quit)"
               + "\n명령어> ");
 
       commandStack.push(command);
       commandQueue.offer(command);
 
-      try {
-        if (command.equalsIgnoreCase("/add")) {
-          menu.addMenu();
-        } else if (command.equalsIgnoreCase("/recode")) {
-          menu.recodeMenu();
-        } else if (command.equalsIgnoreCase("/total")) {
-          menu.totalMenu();
-        } else if (command.equalsIgnoreCase("/marathon")) {
-          menu.marathonMenu();
-        } else if (command.equalsIgnoreCase("/history")) {
-          printCommandHistory(commandStack.iterator());
-        } else if (command.equalsIgnoreCase("/history2")) {
-          printCommandHistory(commandQueue.iterator());
-        } else if (command.equalsIgnoreCase("exit") || command.equalsIgnoreCase("quit")) {
-          System.out.println("수고하셨습니다. 적당히하세요.");
-          break;
-        } else {
-          CalisthenicsMenuHandler.massage("잘못된 명령어 입니다.");
-          continue;
-        }
-      } catch (Exception e) {
-        System.out.printf("\n잘좀 입력하세요..\n> %s%s\n", e.getClass().getName(), e.getMessage());
+      //      try {
+      if (command.equalsIgnoreCase("/add")) {
+        menu.addMenu();
+      } else if (command.equalsIgnoreCase("/recode")) {
+        menu.recodeMenu();
+      } else if (command.equalsIgnoreCase("/total")) {
+        menu.totalMenu();
+      } else if (command.equalsIgnoreCase("/marathon")) {
+        menu.marathonMenu();
+      } else if (command.equalsIgnoreCase("/bodycheck")) {
+        menu.bodyCheck();
+      } else if (command.equalsIgnoreCase("/history")) {
+        printCommandHistory(commandStack.iterator());
+      } else if (command.equalsIgnoreCase("/history2")) {
+        printCommandHistory(commandQueue.iterator());
+      } else if (command.equalsIgnoreCase("exit") || command.equalsIgnoreCase("quit")) {
+        System.out.println("수고하셨습니다. 적당히하세요.");
+        break;
+      } else {
+        CalisthenicsMenuHandler.massage("잘못된 명령어 입니다.");
+        continue;
       }
+      //      } catch (Exception e) {
+      //        System.out.printf("\n잘좀 입력하세요..\n> %s%s\n", e.getClass().getName(), e.getMessage());
+      //      }
       System.out.println();
     }
   }

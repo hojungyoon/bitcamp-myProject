@@ -2,9 +2,10 @@ package com.mypr.pms.domain;
 
 import java.sql.Date;
 
-public class BodyChecking {
+public class BodyCheckMenu {
+  private int num;
   private double badyWeight;
-  private int tall;
+  private double tall;
   private double bodyFatMass;
   private double muscleMass;
   private Date date;
@@ -21,7 +22,9 @@ public class BodyChecking {
     result = prime * result + ((date == null) ? 0 : date.hashCode());
     temp = Double.doubleToLongBits(muscleMass);
     result = prime * result + (int) (temp ^ (temp >>> 32));
-    result = prime * result + tall;
+    result = prime * result + num;
+    temp = Double.doubleToLongBits(tall);
+    result = prime * result + (int) (temp ^ (temp >>> 32));
     return result;
   }
 
@@ -33,7 +36,7 @@ public class BodyChecking {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    BodyChecking other = (BodyChecking) obj;
+    BodyCheckMenu other = (BodyCheckMenu) obj;
     if (Double.doubleToLongBits(badyWeight) != Double.doubleToLongBits(other.badyWeight))
       return false;
     if (Double.doubleToLongBits(bodyFatMass) != Double.doubleToLongBits(other.bodyFatMass))
@@ -45,11 +48,19 @@ public class BodyChecking {
       return false;
     if (Double.doubleToLongBits(muscleMass) != Double.doubleToLongBits(other.muscleMass))
       return false;
-    if (tall != other.tall)
+    if (num != other.num)
+      return false;
+    if (Double.doubleToLongBits(tall) != Double.doubleToLongBits(other.tall))
       return false;
     return true;
   }
 
+  public int getNum() {
+    return num;
+  }
+  public void setNum(int num) {
+    this.num = num;
+  }
   public double getBadyWeight() {
     return badyWeight;
   }
@@ -59,7 +70,7 @@ public class BodyChecking {
   public double getTall() {
     return tall;
   }
-  public void setTall(int tall) {
+  public void setTall(double tall) {
     this.tall = tall;
   }
   public double getBodyFatMass() {
