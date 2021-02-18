@@ -3,7 +3,12 @@ package com.mypr.pms.handler;
 import com.mypr.util.Prompt;
 
 public class MenuHandler {
-  CalisthenicsMenuHandler calisWork = new CalisthenicsMenuHandler();
+
+
+
+
+
+
   WeightMenuHandler weightWork = new WeightMenuHandler();
   BodyCheckingMenu bodyCheck = new BodyCheckingMenu();
 

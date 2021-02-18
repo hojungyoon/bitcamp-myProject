@@ -49,6 +49,19 @@ public class BodyCheckingMenu {
             , b.getNum(), b.getDate(), b.getTall(), b.getBadyWeight(), b.getMuscleMass(), b.getBodyFatMass());
       }
     }
+
+    int number2 = Prompt.inputInt("\n1.update\n2.Delete\n3.뒤로가기\n> ");
+    int no = Prompt.inputInt("몇번 정보를 수정하시겠습니까?");
+    switch(number2) {
+      case 1:
+        update(no);
+        break;
+      case 2:
+        delete(no);
+        break;
+      case 3:
+        break;
+    }
   }
 
   public void graph() throws CloneNotSupportedException {
@@ -64,6 +77,7 @@ public class BodyCheckingMenu {
       }
     }
     System.out.println();
+
   }
 
   public void update(int number) {

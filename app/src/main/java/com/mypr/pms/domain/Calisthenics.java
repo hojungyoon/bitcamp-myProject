@@ -4,7 +4,7 @@ package com.mypr.pms.domain;
 
 import java.sql.Date;
 
-public class CalisthenicsMenu {
+public class Calisthenics {
 
   private int nums;
   private  Date date;
@@ -46,7 +46,7 @@ public class CalisthenicsMenu {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    CalisthenicsMenu other = (CalisthenicsMenu) obj;
+    Calisthenics other = (Calisthenics) obj;
     if (chinning != other.chinning)
       return false;
     if (date == null) {

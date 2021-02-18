@@ -1,19 +1,35 @@
 package com.mypr.pms;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import com.mypr.pms.handler.CalisthenicsMenuHandler;
-import com.mypr.pms.handler.MenuHandler;
+import com.mypr.pms.domain.Calisthenics;
+import com.mypr.pms.handler.CalisthenicsAddHandler;
+import com.mypr.pms.handler.CalisthenicsCardioHandler;
+import com.mypr.pms.handler.CalisthenicsDeleteHandler;
+import com.mypr.pms.handler.CalisthenicsListHandler;
+import com.mypr.pms.handler.CalisthenicsTotalHandler;
+import com.mypr.pms.handler.CalisthenicsUpdateHandler;
+import com.mypr.pms.handler.MarathonCount;
 import com.mypr.util.Prompt;
 
 public class Main {
   static ArrayDeque<String> commandStack = new ArrayDeque<>();
   static LinkedList<String> commandQueue = new LinkedList<>();
 
-  public static void main(String[] args) throws CloneNotSupportedException {
+  public static void main(String[] args) {
 
-    MenuHandler menu = new MenuHandler();
+    ArrayList<Calisthenics> calisthenics = new ArrayList<>();
+
+    MarathonCount marathon = new MarathonCount(calisthenics);
+
+    CalisthenicsAddHandler calisAdd = new CalisthenicsAddHandler(calisthenics);
+    CalisthenicsUpdateHandler calisUpdate = new CalisthenicsUpdateHandler(calisthenics);
+    CalisthenicsDeleteHandler calisDelete = new CalisthenicsDeleteHandler(calisthenics);
+    CalisthenicsListHandler calisList = new CalisthenicsListHandler(calisthenics, calisUpdate, calisDelete);
+    CalisthenicsTotalHandler calisTotal = new CalisthenicsTotalHandler(calisthenics);
+    CalisthenicsCardioHandler calisCardio = new CalisthenicsCardioHandler(calisthenics, marathon);
 
     while (true) {
       String command = Prompt.inputString(
@@ -33,15 +49,15 @@ public class Main {
 
       //      try {
       if (command.equalsIgnoreCase("/add")) {
-        menu.addMenu();
+        calisAdd.add();
       } else if (command.equalsIgnoreCase("/recode")) {
-        menu.recodeMenu();
+        calisList.calisRecodeList();
       } else if (command.equalsIgnoreCase("/total")) {
-        menu.totalMenu();
+        calisTotal.calisTotal();
       } else if (command.equalsIgnoreCase("/marathon")) {
-        menu.marathonMenu();
+        calisCardio.marathonRecode();
       } else if (command.equalsIgnoreCase("/bodycheck")) {
-        menu.bodyCheck();
+
       } else if (command.equalsIgnoreCase("/history")) {
         printCommandHistory(commandStack.iterator());
       } else if (command.equalsIgnoreCase("/history2")) {
@@ -50,7 +66,7 @@ public class Main {
         System.out.println("수고하셨습니다. 적당히하세요.");
         break;
       } else {
-        CalisthenicsMenuHandler.massage("잘못된 명령어 입니다.");
+        System.out.printf("\n잘못된 명령어 입니다.\n");
         continue;
       }
       //      } catch (Exception e) {
