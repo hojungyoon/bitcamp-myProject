@@ -14,7 +14,8 @@ public class CalisthenicsCardioHandler extends AbstractCalisthenicsHandler {
     this.marathon = marathon;
   }
 
-  public void marathonRecode() {
+  @Override
+  public void service() {
     if (calisList.size() == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
     } else {
@@ -38,6 +39,9 @@ public class CalisthenicsCardioHandler extends AbstractCalisthenicsHandler {
       }
     }
   }
+
+  @Override
+  public void service(int num) {}
 
 
 

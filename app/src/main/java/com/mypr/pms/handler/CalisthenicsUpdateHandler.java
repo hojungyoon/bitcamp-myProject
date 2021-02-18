@@ -10,10 +10,11 @@ public class CalisthenicsUpdateHandler extends AbstractCalisthenicsHandler {
     super (calisList);
   }
 
-  public void update(int number) {
+  @Override
+  public void service(int number) {
     Calisthenics c = findByNo(number);
     if (c == null) {
-      massage("입력된 정보가 없습니다.");
+      lineMessage("입력된 정보가 없습니다.");
       return;
     }
     while(true) {
@@ -76,11 +77,13 @@ public class CalisthenicsUpdateHandler extends AbstractCalisthenicsHandler {
     System.out.println();
     String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) > ");
     if (input.equalsIgnoreCase("y")) {
-      massage("기록을 변경하였습니다.");
+      lineMessage("기록을 변경하였습니다.");
     } else {
-      massage("기록변경을 취소하였습니다.");
+      lineMessage("기록변경을 취소하였습니다.");
     }
   }
 
+  @Override
+  public void service() {}
 }
 

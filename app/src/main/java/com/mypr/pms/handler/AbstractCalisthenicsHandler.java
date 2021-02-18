@@ -4,7 +4,7 @@ import java.util.List;
 import com.mypr.pms.domain.Calisthenics;
 import com.mypr.util.Prompt;
 
-public abstract class AbstractCalisthenicsHandler {
+public abstract class AbstractCalisthenicsHandler implements Command {
 
   protected List<Calisthenics> calisList;
 
@@ -12,7 +12,7 @@ public abstract class AbstractCalisthenicsHandler {
     this.calisList = calisList;
   }
 
-  protected static void massage(String massage) {
+  protected static void lineMessage(String massage) {
     System.out.printf("\n-------------------------------\n"
         + "%s"
         + "\n-------------------------------\n", massage);

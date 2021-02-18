@@ -18,7 +18,8 @@ public class CalisthenicsListHandler extends AbstractCalisthenicsHandler {
     this.delete = delete;
   }
 
-  public void calisRecodeList(){
+  @Override
+  public void service(){
     //    System.out.println();
     //    Calisthenics[] calisMenu = calisList.toArray(new Calisthenics[count]);
     //    if(calisMenu.length == 0) {
@@ -64,16 +65,19 @@ public class CalisthenicsListHandler extends AbstractCalisthenicsHandler {
       int number2 = Prompt.inputInt("\n1.update\n2.Delete\n3.뒤로가기\n> ");
       switch(number2) {
         case 1:
-          update.update(no);
+          update.service(no);
           break;
         case 2:
-          delete.delete(no);
+          delete.service(no);
           break;
         case 3:
           break;
       }
     }
   }
+
+  @Override
+  public void service(int num) {}
 
 }
 

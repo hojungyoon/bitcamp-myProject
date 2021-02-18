@@ -31,6 +31,8 @@ public class Main {
     CalisthenicsTotalHandler calisTotal = new CalisthenicsTotalHandler(calisthenics);
     CalisthenicsCardioHandler calisCardio = new CalisthenicsCardioHandler(calisthenics, marathon);
 
+
+
     while (true) {
       String command = Prompt.inputString(
           "[개인 운동 기록]"

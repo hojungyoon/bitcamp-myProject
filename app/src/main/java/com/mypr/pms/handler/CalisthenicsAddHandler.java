@@ -11,7 +11,8 @@ public class CalisthenicsAddHandler extends AbstractCalisthenicsHandler {
     super (calisList);
   }
 
-  public void add() {
+  @Override
+  public void service() {
     Calisthenics c = new Calisthenics();
     System.out.printf("\n현재까지 진행한 회차는(%d)회 입니다.", calisList.size());
     c.setNums(Prompt.inputInt("\n회차를 입력해주세요 : "));
@@ -75,6 +76,9 @@ public class CalisthenicsAddHandler extends AbstractCalisthenicsHandler {
         + "%s"
         + "\n-------------------------------\n", massage);
   }
+
+  @Override
+  public void service(int num) {}
 
 }
 

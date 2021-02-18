@@ -10,18 +10,22 @@ public class CalisthenicsDeleteHandler extends AbstractCalisthenicsHandler {
     super (calisList);
   }
 
-  public void delete(int number) {
+  @Override
+  public void service(int number) {
     Calisthenics c = findByNo(number);
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N)> ");
 
     if (input.equalsIgnoreCase("y")) {
 
       calisList.remove(c);
-      massage("기록을 삭제하였습니다.");
+      lineMessage("기록을 삭제하였습니다.");
     } else {
-      massage("기록삭제를 취소하였습니다.");
+      lineMessage("기록삭제를 취소하였습니다.");
     }
   }
+
+  @Override
+  public void service() {}
 
 }
 

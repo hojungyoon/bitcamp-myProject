@@ -11,7 +11,8 @@ public class CalisthenicsTotalHandler extends AbstractCalisthenicsHandler{
     super (calisList);
   }
 
-  public void calisTotal() {
+  @Override
+  public void service() {
 
     if (calisList.size() == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
@@ -47,5 +48,8 @@ public class CalisthenicsTotalHandler extends AbstractCalisthenicsHandler{
     System.out.printf("배틀 로프: %d회\n", t.getRope());
 
   }
+
+  @Override
+  public void service(int num) {}
 }
 

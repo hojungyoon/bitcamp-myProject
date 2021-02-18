@@ -18,4 +18,10 @@ public class MarathonCount extends AbstractCalisthenicsHandler{
     }
     return num;
   }
+
+  @Override
+  public void service() {}
+
+  @Override
+  public void service(int num) {}
 }
