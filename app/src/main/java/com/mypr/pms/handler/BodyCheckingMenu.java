@@ -3,15 +3,15 @@ package com.mypr.pms.handler;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
-import com.mypr.pms.domain.BodyCheckMenu;
+import com.mypr.pms.domain.BodyCheck;
 import com.mypr.util.Prompt;
 
 public class BodyCheckingMenu {
-  private ArrayList<BodyCheckMenu> bodyCheck = new ArrayList<>();
+  private ArrayList<BodyCheck> bodyCheck = new ArrayList<>();
   private int count = 0;
 
   public void bodyCheck() {
-    BodyCheckMenu b = new BodyCheckMenu();
+    BodyCheck b = new BodyCheck();
     b.setDate(new Date(System.currentTimeMillis()));
     System.out.printf("입력일자 : [ %s ]\n", b.getDate());
     loop:
@@ -33,13 +33,13 @@ public class BodyCheckingMenu {
   }
 
   public void checkRecode() throws CloneNotSupportedException {
-    Iterator<BodyCheckMenu> iterator = bodyCheck.iterator();
+    Iterator<BodyCheck> iterator = bodyCheck.iterator();
     if (count == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
       return;
     } else {
       while (iterator.hasNext()) {
-        BodyCheckMenu b = iterator.next();
+        BodyCheck b = iterator.next();
         System.out.printf("\n%d > [ %s ]"
             + "\n키 : %.2f"
             + "\n몸무게 : %.2f"
@@ -65,12 +65,12 @@ public class BodyCheckingMenu {
   }
 
   public void graph() throws CloneNotSupportedException {
-    BodyCheckMenu[] b = bodyCheck.toArray(new BodyCheckMenu[count]);
+    BodyCheck[] b = bodyCheck.toArray(new BodyCheck[count]);
     if (b.length == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
       return;
     }
-    for (BodyCheckMenu b1 : b) {
+    for (BodyCheck b1 : b) {
       System.out.printf("\n[골격근량 : %.2f]", b1.getBodyFatMass());
       for (int i = 0; i < (int) b1.getBodyFatMass(); i++) {
         System.out.print("*");
@@ -81,7 +81,7 @@ public class BodyCheckingMenu {
   }
 
   public void update(int number) {
-    BodyCheckMenu b = findByNo(number);
+    BodyCheck b = findByNo(number);
     if (b == null) {
       massage("입력된 정보가 없습니다.");
       return;
@@ -126,7 +126,7 @@ public class BodyCheckingMenu {
   }
 
   public void delete(int number) {
-    BodyCheckMenu b = findByNo(number);
+    BodyCheck b = findByNo(number);
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N)> ");
 
     if (input.equalsIgnoreCase("y")) {
@@ -167,9 +167,9 @@ public class BodyCheckingMenu {
         + "\n-------------------------------\n", massage);
   }
 
-  private BodyCheckMenu findByNo(int bodyNo) {
-    BodyCheckMenu[] list = bodyCheck.toArray(new BodyCheckMenu[count]);
-    for (BodyCheckMenu m : list) {
+  private BodyCheck findByNo(int bodyNo) {
+    BodyCheck[] list = bodyCheck.toArray(new BodyCheck[count]);
+    for (BodyCheck m : list) {
       if (m.getNum() == bodyNo) {
         return m;
       }

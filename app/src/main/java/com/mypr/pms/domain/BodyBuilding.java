@@ -2,7 +2,7 @@ package com.mypr.pms.domain;
 
 import java.sql.Date;
 
-public class WeightMenu {
+public class BodyBuilding {
 
   private int nums;
   private  Date date;
@@ -43,7 +43,7 @@ public class WeightMenu {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    WeightMenu other = (WeightMenu) obj;
+    BodyBuilding other = (BodyBuilding) obj;
     if (bentoverLateral != other.bentoverLateral)
       return false;
     if (bicepsCurl != other.bicepsCurl)

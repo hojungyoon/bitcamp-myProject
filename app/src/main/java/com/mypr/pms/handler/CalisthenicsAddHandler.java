@@ -5,7 +5,7 @@ import java.util.List;
 import com.mypr.pms.domain.Calisthenics;
 import com.mypr.util.Prompt;
 
-public class CalisthenicsAddHandler extends AbstractCalisthenicsHandler {
+public class CalisthenicsAddHandler extends AbstractWorkOutHandler {
 
   public CalisthenicsAddHandler (List<Calisthenics> calisList) {
     super (calisList);
@@ -76,9 +76,6 @@ public class CalisthenicsAddHandler extends AbstractCalisthenicsHandler {
         + "%s"
         + "\n-------------------------------\n", massage);
   }
-
-  @Override
-  public void service(int num) {}
 
 }
 

@@ -1,25 +1,37 @@
 package com.mypr.pms.handler;
 
+import java.util.ArrayList;
+import com.mypr.pms.domain.Calisthenics;
 import com.mypr.util.Prompt;
 
 public class MenuHandler {
 
+  ArrayList<Calisthenics> calisthenics = new ArrayList<Calisthenics>();
+
+
+  MarathonCount marathon = new MarathonCount(calisthenics);
+
+  CalisthenicsAddHandler calisAdd = new CalisthenicsAddHandler(calisthenics);
+  CalisthenicsUpdateHandler calisUpdate = new CalisthenicsUpdateHandler(calisthenics);
+  CalisthenicsDeleteHandler calisDelete = new CalisthenicsDeleteHandler(calisthenics);
+  CalisthenicsListHandler calisList = new CalisthenicsListHandler(calisthenics, calisUpdate, calisDelete);
+  CalisthenicsTotalHandler calisTotal = new CalisthenicsTotalHandler(calisthenics);
+  CalisthenicsCardioHandler calisCardio = new CalisthenicsCardioHandler(calisthenics, marathon);
 
 
 
 
 
   WeightMenuHandler weightWork = new WeightMenuHandler();
-  BodyCheckingMenu bodyCheck = new BodyCheckingMenu();
 
-  public void addMenu() {
+  public MenuHandler add() {
     while(true) {
       int choice = Prompt.inputInt("\n"
           + "1.Calisthenics"
           + "\n2.Weight"
           + "\n> ");
       if(choice == 1) {
-        calisWork.calisWorkMenu();
+        calisAdd.service();
       } else if (choice == 2) {
         weightWork.weightWorkMenu();
       } else {
@@ -30,14 +42,14 @@ public class MenuHandler {
     }
   }
 
-  public void recodeMenu() throws CloneNotSupportedException {
+  public void recode(){
     while(true) {
       int choice = Prompt.inputInt("\n"
           + "1.Calisthenics\n"
           + "2.Weight\n"
           + "> ");
       if(choice == 1) {
-        calisWork.calisRecodeList();
+        calisList.service();
       } else if (choice == 2) {
         weightWork.weightRecodeList();
       } else {
@@ -48,14 +60,14 @@ public class MenuHandler {
     }
   }
 
-  public void totalMenu() {
+  public void total() {
     while(true) {
       int choice = Prompt.inputInt("\n"
           + "1.Calisthenics\n"
           + "2.Weight\n"
           + "> ");
       if(choice == 1) {
-        calisWork.calisTotal();
+        calisTotal.service();
       } else if (choice == 2) {
         weightWork.weightTotal();
       } else {
@@ -66,11 +78,12 @@ public class MenuHandler {
     }
   }
 
-  public void marathonMenu() {
-    calisWork.marathonRecode();
+  public void marathon() {
+    calisCardio.service();
   }
 
-  public void bodyCheck() throws CloneNotSupportedException {
+
+  public void bodyCheck {
     while(true) {
       int choice = Prompt.inputInt("\n"
           + "1.Input\n"

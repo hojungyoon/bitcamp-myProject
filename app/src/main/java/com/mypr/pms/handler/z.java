@@ -7,7 +7,7 @@ import com.mypr.pms.domain.Calisthenics;
 import com.mypr.pms.domain.CalisthenicsTotal;
 import com.mypr.util.Prompt;
 
-public class CalisthenicsMenuHandler2 {
+public class z {
 
   private LinkedList<Calisthenics> calisList = new LinkedList<>();
   private int rCount = 0;

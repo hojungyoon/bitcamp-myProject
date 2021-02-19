@@ -5,7 +5,7 @@ import java.util.List;
 import com.mypr.pms.domain.Calisthenics;
 import com.mypr.pms.domain.CalisthenicsTotal;
 
-public class CalisthenicsTotalHandler extends AbstractCalisthenicsHandler{
+public class CalisthenicsTotalHandler extends AbstractWorkOutHandler{
 
   public CalisthenicsTotalHandler (List<Calisthenics> calisList) {
     super (calisList);
@@ -49,7 +49,5 @@ public class CalisthenicsTotalHandler extends AbstractCalisthenicsHandler{
 
   }
 
-  @Override
-  public void service(int num) {}
 }
 

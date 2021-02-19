@@ -2,17 +2,17 @@ package com.mypr.pms.handler;
 
 import java.sql.Date;
 import java.util.LinkedList;
-import com.mypr.pms.domain.WeightMenu;
+import com.mypr.pms.domain.BodyBuilding;
 import com.mypr.pms.domain.WeightTotal;
 import com.mypr.util.Prompt;
 
 public class WeightMenuHandler {
 
-  private LinkedList<WeightMenu> weightList = new LinkedList<>();
+  private LinkedList<BodyBuilding> weightList = new LinkedList<>();
   private int count = 0;
 
   public void weightWorkMenu() {
-    WeightMenu w = new WeightMenu();
+    BodyBuilding w = new BodyBuilding();
     System.out.printf("\n현재까지 진행한 회차는(%d)회 입니다.", count);
     w.setNums(Prompt.inputInt("\n회차를 입력해주세요 : "));
     loop:
@@ -54,12 +54,12 @@ public class WeightMenuHandler {
 
   public void weightRecodeList() {
     System.out.println();
-    WeightMenu[] weightMenu = weightList.toArray(new WeightMenu[count]);
+    BodyBuilding[] weightMenu = weightList.toArray(new BodyBuilding[count]);
     if (weightMenu.length == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
       return;
     }
-    for (WeightMenu w : weightMenu) {
+    for (BodyBuilding w : weightMenu) {
       System.out.printf("[%d회차. %s]\n", w.getNums(), w.getDate());
     }
     wTodayRecode();
@@ -68,7 +68,7 @@ public class WeightMenuHandler {
 
   public void wTodayRecode() {
     int no = Prompt.inputInt("> ");
-    WeightMenu w = findByNo(no);
+    BodyBuilding w = findByNo(no);
     if (no == w.getNums()) {
       System.out.printf("\n[%d회차]: %s\n", w.getNums(), w.getDate());
       System.out.println("-----[전  면]-----");
@@ -100,7 +100,7 @@ public class WeightMenuHandler {
   }
 
   public void update(int number) {
-    WeightMenu w = findByNo(number);
+    BodyBuilding w = findByNo(number);
     if (w == null) {
       massage("입력된 정보가 없습니다.");
       return;
@@ -166,7 +166,7 @@ public class WeightMenuHandler {
   }
 
   public void delete(int number) {
-    WeightMenu c = findByNo(number);
+    BodyBuilding c = findByNo(number);
     String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N)> ");
 
     if (input.equalsIgnoreCase("y")) {
@@ -188,12 +188,12 @@ public class WeightMenuHandler {
 
   public void weightTotal() {
     WeightTotal t = new WeightTotal();
-    WeightMenu[] wMenu = weightList.toArray(new WeightMenu[count]); 
+    BodyBuilding[] wMenu = weightList.toArray(new BodyBuilding[count]); 
     if (wMenu.length == 0) {
       System.out.printf("\n입력된 정보가 없습니다.\n");
       return;
     }
-    for (WeightMenu w : wMenu) {
+    for (BodyBuilding w : wMenu) {
       t.setdPress(t.getdPress() + w.getdPress());
       t.setInDpress(t.getInDpress() + w.getInDpress());
       t.setdFly(t.getdFly() + w.getdFly());
@@ -249,9 +249,9 @@ public class WeightMenuHandler {
   }
 
 
-  private WeightMenu findByNo(int weightNo) {
-    WeightMenu[] list = weightList.toArray(new WeightMenu[count]);
-    for (WeightMenu w : list) {
+  private BodyBuilding findByNo(int weightNo) {
+    BodyBuilding[] list = weightList.toArray(new BodyBuilding[count]);
+    for (BodyBuilding w : list) {
       if (w.getNums() == weightNo) {
         return w;
       }

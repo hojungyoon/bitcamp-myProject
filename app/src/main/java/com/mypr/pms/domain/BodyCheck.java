@@ -2,7 +2,7 @@ package com.mypr.pms.domain;
 
 import java.sql.Date;
 
-public class BodyCheckMenu {
+public class BodyCheck {
   private int num;
   private double badyWeight;
   private double tall;
@@ -36,7 +36,7 @@ public class BodyCheckMenu {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    BodyCheckMenu other = (BodyCheckMenu) obj;
+    BodyCheck other = (BodyCheck) obj;
     if (Double.doubleToLongBits(badyWeight) != Double.doubleToLongBits(other.badyWeight))
       return false;
     if (Double.doubleToLongBits(bodyFatMass) != Double.doubleToLongBits(other.bodyFatMass))

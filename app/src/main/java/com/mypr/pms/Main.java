@@ -2,16 +2,16 @@ package com.mypr.pms;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import com.mypr.pms.domain.BodyCheck;
 import com.mypr.pms.domain.Calisthenics;
-import com.mypr.pms.handler.CalisthenicsAddHandler;
-import com.mypr.pms.handler.CalisthenicsCardioHandler;
-import com.mypr.pms.handler.CalisthenicsDeleteHandler;
-import com.mypr.pms.handler.CalisthenicsListHandler;
-import com.mypr.pms.handler.CalisthenicsTotalHandler;
-import com.mypr.pms.handler.CalisthenicsUpdateHandler;
-import com.mypr.pms.handler.MarathonCount;
+import com.mypr.pms.handler.MenuCommand;
+import com.mypr.pms.handler.Menu_AddHandler;
+import com.mypr.pms.handler.Menu_CardioHandler;
+import com.mypr.pms.handler.Menu_ListHandler;
+import com.mypr.pms.handler.Menu_TotalHandler;
 import com.mypr.util.Prompt;
 
 public class Main {
@@ -20,18 +20,15 @@ public class Main {
 
   public static void main(String[] args) {
 
-    ArrayList<Calisthenics> calisthenics = new ArrayList<>();
+    ArrayList<Calisthenics> calisthenics = new ArrayList<Calisthenics>();
+    ArrayList<BodyCheck> bodyCheck = new ArrayList<BodyCheck>();
 
-    MarathonCount marathon = new MarathonCount(calisthenics);
+    HashMap<String, MenuCommand> commandMap = new HashMap<>();
 
-    CalisthenicsAddHandler calisAdd = new CalisthenicsAddHandler(calisthenics);
-    CalisthenicsUpdateHandler calisUpdate = new CalisthenicsUpdateHandler(calisthenics);
-    CalisthenicsDeleteHandler calisDelete = new CalisthenicsDeleteHandler(calisthenics);
-    CalisthenicsListHandler calisList = new CalisthenicsListHandler(calisthenics, calisUpdate, calisDelete);
-    CalisthenicsTotalHandler calisTotal = new CalisthenicsTotalHandler(calisthenics);
-    CalisthenicsCardioHandler calisCardio = new CalisthenicsCardioHandler(calisthenics, marathon);
-
-
+    commandMap.put("/add", new Menu_AddHandler(calisthenics));
+    commandMap.put("/recode", new Menu_ListHandler(calisthenics));
+    commandMap.put("/total", new Menu_TotalHandler(calisthenics));
+    commandMap.put("/marathon", new Menu_CardioHandler(calisthenics));
 
     while (true) {
       String command = Prompt.inputString(
@@ -49,31 +46,28 @@ public class Main {
       commandStack.push(command);
       commandQueue.offer(command);
 
-      //      try {
-      if (command.equalsIgnoreCase("/add")) {
-        calisAdd.add();
-      } else if (command.equalsIgnoreCase("/recode")) {
-        calisList.calisRecodeList();
-      } else if (command.equalsIgnoreCase("/total")) {
-        calisTotal.calisTotal();
-      } else if (command.equalsIgnoreCase("/marathon")) {
-        calisCardio.marathonRecode();
-      } else if (command.equalsIgnoreCase("/bodycheck")) {
+      try {
+        switch (command) {
+          case "/history":
+            printCommandHistory(commandStack.iterator());
+          case "/history2":
+            printCommandHistory(commandQueue.iterator());
+          case "exit":
+          case "quit":
+            System.out.println("수고하셨습니다. 적당히하세요.");
+            break;
+          default:
+            MenuCommand commandHandler = commandMap.get(command);
 
-      } else if (command.equalsIgnoreCase("/history")) {
-        printCommandHistory(commandStack.iterator());
-      } else if (command.equalsIgnoreCase("/history2")) {
-        printCommandHistory(commandQueue.iterator());
-      } else if (command.equalsIgnoreCase("exit") || command.equalsIgnoreCase("quit")) {
-        System.out.println("수고하셨습니다. 적당히하세요.");
-        break;
-      } else {
-        System.out.printf("\n잘못된 명령어 입니다.\n");
-        continue;
+            if (commandHandler == null) {
+              System.out.printf("\n실행할 수 없는 명령입니다.\n");
+            } else {
+              commandHandler.menuService();
+            }
+        }
+      }catch (Exception e) {
+        System.out.printf("\n잘좀 입력하세요..\n> %s%s\n", e.getClass().getName(), e.getMessage());
       }
-      //      } catch (Exception e) {
-      //        System.out.printf("\n잘좀 입력하세요..\n> %s%s\n", e.getClass().getName(), e.getMessage());
-      //      }
       System.out.println();
     }
   }

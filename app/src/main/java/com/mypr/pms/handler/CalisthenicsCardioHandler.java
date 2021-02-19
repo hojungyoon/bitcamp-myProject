@@ -5,13 +5,10 @@ import java.util.List;
 import com.mypr.pms.domain.Calisthenics;
 import com.mypr.util.Prompt;
 
-public class CalisthenicsCardioHandler extends AbstractCalisthenicsHandler {
+public class CalisthenicsCardioHandler extends AbstractWorkOutHandler {
 
-  MarathonCount marathon;
-
-  public CalisthenicsCardioHandler (List<Calisthenics> calisList, MarathonCount marathon) {
+  public CalisthenicsCardioHandler (List<Calisthenics> calisList) {
     super (calisList);
-    this.marathon = marathon;
   }
 
   @Override
@@ -20,7 +17,7 @@ public class CalisthenicsCardioHandler extends AbstractCalisthenicsHandler {
       System.out.printf("\n입력된 정보가 없습니다.\n");
     } else {
       Iterator<Calisthenics> iterator = calisList.iterator();
-      System.out.printf("\n마라톤 회차: %d회\n", marathon.runningNums());
+      System.out.printf("\n마라톤 회차: %d회\n", runningNums());
       while (iterator.hasNext()) {
         Calisthenics c = iterator.next();
         if (c.getRunning() >= 10) {
@@ -40,11 +37,15 @@ public class CalisthenicsCardioHandler extends AbstractCalisthenicsHandler {
     }
   }
 
-  @Override
-  public void service(int num) {}
-
-
-
+  int runningNums() {
+    int num = 0;
+    for (int i = 0; i < calisList.size(); i++) {
+      if (calisList.get(i).getRunning() >= 10) {
+        num++;
+      }
+    }
+    return num;
+  }
 
 }
 
