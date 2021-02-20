@@ -5,17 +5,16 @@ import java.util.List;
 import com.mypr.pms.domain.Calisthenics;
 import com.mypr.util.Prompt;
 
-public class CalisthenicsListHandler extends AbstractWorkOutHandler {
+public class CalisthenicsListHandler extends AbstractCalisthenicsHandler {
 
   public CalisthenicsListHandler (List<Calisthenics> calisList) {
-
     super (calisList);
 
   }
 
   @Override
   public void service(){
-    //    System.out.println();
+    System.out.println();
     //    Calisthenics[] calisMenu = calisList.toArray(new Calisthenics[count]);
     //    if(calisMenu.length == 0) {
     //      System.out.println("\n입력된 정보가 없습니다.\n");
@@ -53,9 +52,8 @@ public class CalisthenicsListHandler extends AbstractWorkOutHandler {
       System.out.println("-----[하  체]-----");
       recodeOutput("스 쿼 트 : %d회\n", c1.getSquat());
       recodeOutput("런     지: %d회\n", c1.getLunge());
-      System.out.println("-----[유산소]-----");
-      recodeOutput("러     닝: %dKm\n", c1.getRunning());
-      recodeOutput("등     산: %d분\n", c1.getHiking());
+      System.out.println("------------------------------");
+
 
       int number2 = Prompt.inputInt("\n1.update\n2.Delete\n3.뒤로가기\n> ");
       switch(number2) {
@@ -85,9 +83,6 @@ public class CalisthenicsListHandler extends AbstractWorkOutHandler {
           + "\n4. 행잉-레그"
           + "\n5. 스쿼트"
           + "\n6. 런지"
-          + "\n7. 러닝"
-          + "\n8. 등산"
-          + "\n9. 배틀로프"
           + "\n> ");
       switch (choice) {
         case 1:
@@ -107,22 +102,6 @@ public class CalisthenicsListHandler extends AbstractWorkOutHandler {
           break;
         case 6:
           c.setLunge(Prompt.inputInt("런지> "));
-          break;
-        case 7:
-          c.setRunning(Prompt.inputInt("러닝> "));
-          if (c.getRunning() >= 10) {
-            c.setMarathonName(Prompt.inputString("대회 이름 > "));
-            if(c.getMarathonName() == "") {
-              String practice = "연습";
-              c.setMarathonName(practice);
-            }
-          }
-          break;
-        case 8:
-          c.setHiking(Prompt.inputInt("등산> "));
-          break;
-        case 9:
-          c.setHiking(Prompt.inputInt("배틀로프> "));
           break;
         default :
           System.out.printf("\n없는 번호입니다.\n");

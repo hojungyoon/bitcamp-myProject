@@ -1,6 +1,6 @@
 package com.mypr.pms.domain;
 
-public class WeightTotal {
+public class BodyBuildingTotal {
   public int dPress = 0;
   public int inDpress = 0;
   public int dFly = 0;
@@ -96,7 +96,7 @@ public class WeightTotal {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    WeightTotal other = (WeightTotal) obj;
+    BodyBuildingTotal other = (BodyBuildingTotal) obj;
     if (bentoverLateral != other.bentoverLateral)
       return false;
     if (bicepsCurl != other.bicepsCurl)

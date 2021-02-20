@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import com.mypr.pms.domain.BodyBuilding;
 import com.mypr.pms.domain.BodyCheck;
 import com.mypr.pms.domain.Calisthenics;
+import com.mypr.pms.domain.Cardio;
 import com.mypr.pms.handler.MenuCommand;
 import com.mypr.pms.handler.Menu_AddHandler;
-import com.mypr.pms.handler.Menu_CardioHandler;
+import com.mypr.pms.handler.Menu_GraphHandler;
 import com.mypr.pms.handler.Menu_ListHandler;
 import com.mypr.pms.handler.Menu_TotalHandler;
 import com.mypr.util.Prompt;
@@ -20,15 +22,17 @@ public class Main {
 
   public static void main(String[] args) {
 
-    ArrayList<Calisthenics> calisthenics = new ArrayList<Calisthenics>();
-    ArrayList<BodyCheck> bodyCheck = new ArrayList<BodyCheck>();
+    ArrayList<Calisthenics> calisthenics = new ArrayList<>();
+    ArrayList<BodyBuilding> bodyBuilding = new ArrayList<>();
+    ArrayList<Cardio> cardio = new ArrayList<>();
+    ArrayList<BodyCheck> bodyCheck = new ArrayList<>();
 
     HashMap<String, MenuCommand> commandMap = new HashMap<>();
 
-    commandMap.put("/add", new Menu_AddHandler(calisthenics));
-    commandMap.put("/recode", new Menu_ListHandler(calisthenics));
-    commandMap.put("/total", new Menu_TotalHandler(calisthenics));
-    commandMap.put("/marathon", new Menu_CardioHandler(calisthenics));
+    commandMap.put("/add", new Menu_AddHandler(calisthenics, bodyBuilding, cardio, bodyCheck));
+    commandMap.put("/recode", new Menu_ListHandler(calisthenics, bodyBuilding, cardio, bodyCheck));
+    commandMap.put("/total", new Menu_TotalHandler(calisthenics, bodyBuilding, cardio));
+    commandMap.put("/graph", new Menu_GraphHandler(cardio, bodyCheck));
 
     while (true) {
       String command = Prompt.inputString(
@@ -36,11 +40,10 @@ public class Main {
               + "\n1./add"
               + "\n2./recode"
               + "\n3./total"
-              + "\n4./marathon"
-              + "\n5./bodycheck"
-              + "\n6./history"
-              + "\n7./history2"
-              + "\n8. exit(quit)"
+              + "\n4./Graph"
+              + "\n5./history"
+              + "\n6./history2"
+              + "\n7. exit(quit)"
               + "\n명령어> ");
 
       commandStack.push(command);

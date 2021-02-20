@@ -1,25 +1,14 @@
 package com.mypr.pms.handler;
 
 import java.util.List;
-import com.mypr.pms.domain.BodyBuilding;
 import com.mypr.pms.domain.BodyCheck;
-import com.mypr.pms.domain.Calisthenics;
 import com.mypr.util.Prompt;
 
-public abstract class AbstractWorkOutHandler implements Command {
-
-  protected List<Calisthenics> calisList;
-  public AbstractWorkOutHandler (List<Calisthenics> calisList) {
-    this.calisList = calisList;
-  }
-
-  protected List<BodyBuilding> bodyBuildingList;
-  public AbstractWorkOutHandler (List<BodyBuilding> bodyBuildingList) {
-    this.bodyBuildingList = bodyBuildingList;
-  }
+public abstract class AbstractBodyCheckingHandler implements Command {
 
   protected List<BodyCheck> bodyCheckList;
-  public AbstractWorkOutHandler (List<BodyCheck> bodyCheckList) {
+
+  public AbstractBodyCheckingHandler (List<BodyCheck> bodyCheckList) {
     this.bodyCheckList = bodyCheckList;
   }
 
@@ -49,16 +38,15 @@ public abstract class AbstractWorkOutHandler implements Command {
     }
   }
 
-  protected Calisthenics findByNo(int calisNo) {
-    Calisthenics[] list = calisList.toArray(new Calisthenics[calisList.size()]);
-    for (Calisthenics b : list) {
-      if (b.getNums() == calisNo) {
+  protected BodyCheck findByNo(int calisNo) {
+    BodyCheck[] list = bodyCheckList.toArray(new BodyCheck[bodyCheckList.size()]);
+    for (BodyCheck b : list) {
+      if (b.getNum() == calisNo) {
         return b;
       }
     }
     return null;
   }
-
 
 }
 

@@ -5,7 +5,7 @@ import java.util.List;
 import com.mypr.pms.domain.Calisthenics;
 import com.mypr.util.Prompt;
 
-public class CalisthenicsAddHandler extends AbstractWorkOutHandler {
+public class CalisthenicsAddHandler extends AbstractCalisthenicsHandler {
 
   public CalisthenicsAddHandler (List<Calisthenics> calisList) {
     super (calisList);
@@ -19,7 +19,7 @@ public class CalisthenicsAddHandler extends AbstractWorkOutHandler {
     loop:
       while(true) {
         int i = Prompt.inputInt("\n"
-            + "1.상체\n2.하체\n3.유산소\n4.뒤로가기\n> ");
+            + "1.상체\n2.하체\n3.뒤로가기\n> ");
         switch(i) {
           case 1:
             int i2 = Prompt.inputInt("\n1.전면\n2.후면\n3.복부\n4.뒤로가기\n> ");
@@ -43,22 +43,10 @@ public class CalisthenicsAddHandler extends AbstractWorkOutHandler {
             c.setLunge(Prompt.inputInt("런지 > "));
             break;
           case 3:
-            c.setRunning(Prompt.inputInt("러 닝(km) > "));
-            if (c.getRunning() >=10 ) {
-              c.setMarathonName(Prompt.inputString("대회 이름 > "));
-              if(c.getMarathonName() == "") {
-                String practice = "연습";
-                c.setMarathonName(practice);
-              }
-            }
-            c.setHiking(Prompt.inputInt("등산(분) > "));
-            c.setRope(Prompt.inputInt("배틀로프 > "));
-            break;
-          case 4:
-            massage("입력을 취소하였습니다.");
+            lineMessage("입력을 취소하였습니다.");
             return;
           default :
-            massage("재입력 바랍니다.");
+            lineMessage("재입력 바랍니다.");
             continue loop;
         }
         if(reInput()) {
@@ -68,13 +56,7 @@ public class CalisthenicsAddHandler extends AbstractWorkOutHandler {
         break;
       }
     calisList.add(c);
-    massage("기록이 등록되었습니다.");
-  }
-
-  public static void massage(String massage) {
-    System.out.printf("\n-------------------------------\n"
-        + "%s"
-        + "\n-------------------------------\n", massage);
+    lineMessage("기록이 등록되었습니다.");
   }
 
 }

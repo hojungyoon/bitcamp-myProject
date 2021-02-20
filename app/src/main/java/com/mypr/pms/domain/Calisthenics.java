@@ -14,10 +14,7 @@ public class Calisthenics {
   private  int squat;
   private  int lunge;
   private  int hLegRaise;
-  private  int running;
-  private  String marathonName;
-  private  int hiking;
-  private  int rope;
+
 
   @Override
   public int hashCode() {
@@ -27,13 +24,9 @@ public class Calisthenics {
     result = prime * result + ((date == null) ? 0 : date.hashCode());
     result = prime * result + dipping;
     result = prime * result + hLegRaise;
-    result = prime * result + hiking;
     result = prime * result + lunge;
-    result = prime * result + ((marathonName == null) ? 0 : marathonName.hashCode());
     result = prime * result + nums;
     result = prime * result + pushUp;
-    result = prime * result + rope;
-    result = prime * result + running;
     result = prime * result + squat;
     return result;
   }
@@ -58,22 +51,11 @@ public class Calisthenics {
       return false;
     if (hLegRaise != other.hLegRaise)
       return false;
-    if (hiking != other.hiking)
-      return false;
     if (lunge != other.lunge)
-      return false;
-    if (marathonName == null) {
-      if (other.marathonName != null)
-        return false;
-    } else if (!marathonName.equals(other.marathonName))
       return false;
     if (nums != other.nums)
       return false;
     if (pushUp != other.pushUp)
-      return false;
-    if (rope != other.rope)
-      return false;
-    if (running != other.running)
       return false;
     if (squat != other.squat)
       return false;
@@ -127,30 +109,6 @@ public class Calisthenics {
   }
   public void sethLegRaise(int hLegRaise) {
     this.hLegRaise = hLegRaise;
-  }
-  public int getRunning() {
-    return running;
-  }
-  public void setRunning(int running) {
-    this.running = running;
-  }
-  public String getMarathonName() {
-    return marathonName;
-  }
-  public void setMarathonName(String marathonName) {
-    this.marathonName = marathonName;
-  }
-  public int getHiking() {
-    return hiking;
-  }
-  public void setHiking(int hiking) {
-    this.hiking = hiking;
-  }
-  public int getRope() {
-    return rope;
-  }
-  public void setRope(int rope) {
-    this.rope = rope;
   }
 
 }

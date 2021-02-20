@@ -5,7 +5,7 @@ import java.util.List;
 import com.mypr.pms.domain.Calisthenics;
 import com.mypr.pms.domain.CalisthenicsTotal;
 
-public class CalisthenicsTotalHandler extends AbstractWorkOutHandler{
+public class CalisthenicsTotalHandler extends AbstractCalisthenicsHandler{
 
   public CalisthenicsTotalHandler (List<Calisthenics> calisList) {
     super (calisList);
@@ -28,12 +28,8 @@ public class CalisthenicsTotalHandler extends AbstractWorkOutHandler{
       t.sethLegRaise(t.gethLegRaise() + c.gethLegRaise());
       t.setSquat(t.getSquat() + c.getSquat());
       t.setLunge(t.getLunge() + c.getLunge());
-      t.setRunning(t.getRunning() + c.getRunning());
-      t.setHiking(t.getHiking() + c.getHiking());
-      t.setRope(t.getRope() + c.getRope());
     }
     System.out.printf("\n[운동횟수:%d회]\n", calisList.size());
-    //   System.out.printf("[마라톤횟수:%d회]\n", calisList.rCount);
     System.out.println("-----[상  체]-----");
     System.out.printf("푸 쉬 업 : %d회\n", t.getPushUp());
     System.out.printf("딥스&스윙: %d회\n", t.getDipping());
@@ -43,10 +39,6 @@ public class CalisthenicsTotalHandler extends AbstractWorkOutHandler{
     System.out.printf("스 쿼 트 : %d회\n", t.getSquat());
     System.out.printf("런     지: %d회\n", t.getLunge());
     System.out.println("-----[유산소]-----");
-    System.out.printf("러     닝: %dkm\n", t.getRunning());
-    System.out.printf("등     산: %d분\n", t.getHiking());
-    System.out.printf("배틀 로프: %d회\n", t.getRope());
-
   }
 
 }
