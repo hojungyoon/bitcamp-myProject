@@ -7,8 +7,6 @@ import com.mypr.util.Prompt;
 
 public class BodyCheckingListHandler extends AbstractBodyCheckingHandler {
 
-  protected List<BodyCheck> bodyCheckList;
-
   public BodyCheckingListHandler (List<BodyCheck> bodyCheckList) {
     super (bodyCheckList);
   }
@@ -23,26 +21,29 @@ public class BodyCheckingListHandler extends AbstractBodyCheckingHandler {
       while (iterator.hasNext()) {
         BodyCheck b = iterator.next();
         System.out.printf("\n%d > [ %s ]"
-            + "\n키 : %.2f"
-            + "\n몸무게 : %.2f"
-            + "\n골격근량 : %.2f"
-            + "\n체지방량 : %.2f"
+            + "\n키 : %.1fCm"
+            + "\n몸무게 : %.1fKg"
+            + "\n골격근량 : %.1f%%"
+            + "\n체지방량 : %.1f%%"
             + "\n===================="
             , b.getNum(), b.getDate(), b.getTall(), b.getBadyWeight(), b.getMuscleMass(), b.getBodyFatMass());
       }
     }
 
     int number2 = Prompt.inputInt("\n1.update\n2.Delete\n3.뒤로가기\n> ");
-    int no = Prompt.inputInt("몇번 정보를 수정하시겠습니까?");
+    int no;
+
     switch(number2) {
       case 1:
+        no = Prompt.inputInt("몇번 정보를 수정하시겠습니까?");
         update(no);
         break;
       case 2:
+        no = Prompt.inputInt("몇번 정보를 수정하시겠습니까?");
         delete(no);
         break;
       case 3:
-        break;
+        return;
     }
   }
 

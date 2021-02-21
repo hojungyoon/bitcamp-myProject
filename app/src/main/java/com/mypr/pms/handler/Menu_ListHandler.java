@@ -41,6 +41,7 @@ public class Menu_ListHandler extends AbstractMenuHandler{
           break;
         case 4:
           bodyCheckRecode.service();
+          break;
         default:
           System.out.println("재입력 바랍니다.");
           continue;

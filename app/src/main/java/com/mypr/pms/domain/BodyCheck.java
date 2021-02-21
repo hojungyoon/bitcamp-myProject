@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class BodyCheck {
   private int num;
-  private double badyWeight;
+  private double bodyWeight;
   private double tall;
   private double bodyFatMass;
   private double muscleMass;
@@ -15,7 +15,7 @@ public class BodyCheck {
     final int prime = 31;
     int result = 1;
     long temp;
-    temp = Double.doubleToLongBits(badyWeight);
+    temp = Double.doubleToLongBits(bodyWeight);
     result = prime * result + (int) (temp ^ (temp >>> 32));
     temp = Double.doubleToLongBits(bodyFatMass);
     result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -37,7 +37,7 @@ public class BodyCheck {
     if (getClass() != obj.getClass())
       return false;
     BodyCheck other = (BodyCheck) obj;
-    if (Double.doubleToLongBits(badyWeight) != Double.doubleToLongBits(other.badyWeight))
+    if (Double.doubleToLongBits(bodyWeight) != Double.doubleToLongBits(other.bodyWeight))
       return false;
     if (Double.doubleToLongBits(bodyFatMass) != Double.doubleToLongBits(other.bodyFatMass))
       return false;
@@ -62,10 +62,10 @@ public class BodyCheck {
     this.num = num;
   }
   public double getBadyWeight() {
-    return badyWeight;
+    return bodyWeight;
   }
   public void setBadyWeight(double badyWeight) {
-    this.badyWeight = badyWeight;
+    this.bodyWeight = badyWeight;
   }
   public double getTall() {
     return tall;
@@ -101,7 +101,7 @@ public class BodyCheck {
         + "\n[ 골격근량 ]> %.1f %"
         + "\n[ 체지방 ]> %.1f %"
         + "\n=========================\n"
-        , date, tall, badyWeight, muscleMass, bodyFatMass);
+        , date, tall, bodyWeight, muscleMass, bodyFatMass);
     return s;
   }
 

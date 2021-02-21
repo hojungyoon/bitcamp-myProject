@@ -5,8 +5,6 @@ import com.mypr.pms.domain.BodyCheck;
 
 public class BodyCheckingGraphHandler extends AbstractBodyCheckingHandler {
 
-  protected List<BodyCheck> bodyCheckList;
-
   public BodyCheckingGraphHandler (List<BodyCheck> bodyCheckList) {
     super (bodyCheckList);
   }

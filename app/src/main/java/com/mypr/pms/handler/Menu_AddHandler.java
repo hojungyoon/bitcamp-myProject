@@ -22,31 +22,33 @@ public class Menu_AddHandler extends AbstractMenuHandler{
 
   @Override
   public void menuService() {
-    while(true) {
-      int choice = Prompt.inputInt(
-          "\n1.Calisthenics"
-              + "\n2.Weight"
-              + "\n3.Cardio"
-              + "\n4.BodyCheck"
-              + "\n> ");
-      switch (choice) {
-        case 1:
-          calisAdd.service();
-          break;
-        case 2:
-          bodybuildingAdd.service();
-          break;
-        case 3:
-          cardioAdd.service();
-          break;
-        case 4:
-          bodyCheckAddMenu.service();
-        default:
-          System.out.println("재입력 바랍니다.");
-          continue;
+    loop:
+      while(true) {
+        int choice = Prompt.inputInt(
+            "\n1.Calisthenics"
+                + "\n2.Weight"
+                + "\n3.Cardio"
+                + "\n4.BodyCheck"
+                + "\n> ");
+        switch (choice) {
+          case 1:
+            calisAdd.service();
+            break;
+          case 2:
+            bodybuildingAdd.service();
+            break;
+          case 3:
+            cardioAdd.service();
+            break;
+          case 4:
+            bodyCheckAddMenu.service();
+            break;
+          default:
+            System.out.println("재입력 바랍니다.");
+            continue loop;
+        }
+        break;
       }
-      break;
-    }
   }
 
 }
