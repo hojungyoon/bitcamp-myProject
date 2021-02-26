@@ -2,7 +2,7 @@ package com.mypr.util;
 
 import java.util.Scanner;
 
-public class Prompt {
+public class Prompt{
   public static Scanner scanner = new Scanner(System.in);
 
   public static String inputString(String title) {
@@ -18,7 +18,7 @@ public class Prompt {
     return Integer.parseInt(inputString(title));
   }
 
-  static void close() {
+  public static void close(){
     scanner.close();
   }
 }

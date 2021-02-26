@@ -1,19 +1,21 @@
-
-
 package com.mypr.pms.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Calisthenics {
+public class Calisthenics implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   private int nums;
-  private  Date date;
-  private  int pushUp;
-  private  int dipping;
-  private  int chinning;
-  private  int squat;
-  private  int lunge;
-  private  int hLegRaise;
+  private Date date;
+  private int pushUp;
+  private int dipping;
+  private int chinning;
+  private int squat;
+  private int lunge;
+  private int hLegRaise;
+
 
 
   @Override

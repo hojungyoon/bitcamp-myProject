@@ -1,10 +1,19 @@
 package com.mypr.pms;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import com.mypr.pms.domain.BodyBuilding;
 import com.mypr.pms.domain.BodyCheck;
 import com.mypr.pms.domain.Calisthenics;
@@ -20,12 +29,23 @@ public class Main {
   static ArrayDeque<String> commandStack = new ArrayDeque<>();
   static LinkedList<String> commandQueue = new LinkedList<>();
 
+  static List<Calisthenics> calisthenics;
+  static List<BodyBuilding> bodyBuilding;
+  static List<Cardio> cardio;
+  static List<BodyCheck> bodyCheck;
+
+  static File calisFile = new File("calisFile.data");
+  static File bodyBuildingFile = new File("bodyBuildingFile.data");
+  static File cardioFile = new File("cardio.data");
+  static File bodyCheckFile = new File("bodyCheckFile.data");
+
   public static void main(String[] args) {
 
-    ArrayList<Calisthenics> calisthenics = new ArrayList<>();
-    ArrayList<BodyBuilding> bodyBuilding = new ArrayList<>();
-    ArrayList<Cardio> cardio = new ArrayList<>();
-    ArrayList<BodyCheck> bodyCheck = new ArrayList<>();
+    calisthenics = loadObject(calisFile, Calisthenics.class);
+    bodyBuilding = loadObject(bodyBuildingFile, BodyBuilding.class);
+    cardio = loadObject(cardioFile, Cardio.class);
+    bodyCheck = loadObject(bodyCheckFile, BodyCheck.class);
+
 
     HashMap<String, MenuCommand> commandMap = new HashMap<>();
 
@@ -85,6 +105,33 @@ public class Main {
           break;
         }
       }
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  static <T extends Serializable> List<T> loadObject(File file, Class<T> dataType) {
+    try (ObjectInputStream in = new ObjectInputStream(
+        new BufferedInputStream(new FileInputStream(file)))) {
+
+      System.out.printf("File %s loading complete.\n", file.getName());
+      return (List<T>) in.readObject();
+
+    } catch (Exception e) {
+      System.out.printf("An error occurred while saving the file %s!\n", file.getName());
+      return new ArrayList<T>();
+    }
+  }
+
+  static <T extends Serializable> void saveObjects(File file, List<T> dataType) {
+    try (ObjectOutputStream out = new ObjectOutputStream(
+        new BufferedOutputStream(new FileOutputStream(file)))) {
+
+      out.writeObject(dataType);
+      System.out.printf("Completion of saving file %s.\n", file.getName());
+
+    } catch (Exception e) {
+      System.out.printf("An error occurred while saving the file %s!\n", file.getName());
+
     }
   }
 

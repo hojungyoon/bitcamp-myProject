@@ -1,8 +1,12 @@
 package com.mypr.pms.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class BodyCheck {
+public class BodyCheck implements Serializable {
+
+  private static final long serialVersionUID = 1L;
+
   private int num;
   private double bodyWeight;
   private double tall;
