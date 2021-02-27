@@ -26,6 +26,7 @@ import com.mypr.pms.handler.Menu_TotalHandler;
 import com.mypr.util.Prompt;
 
 public class Main {
+
   static ArrayDeque<String> commandStack = new ArrayDeque<>();
   static LinkedList<String> commandQueue = new LinkedList<>();
 
@@ -54,45 +55,52 @@ public class Main {
     commandMap.put("/total", new Menu_TotalHandler(calisthenics, bodyBuilding, cardio));
     commandMap.put("/graph", new Menu_GraphHandler(cardio, bodyCheck));
 
-    while (true) {
-      String command = Prompt.inputString(
-          "[개인 운동 기록]"
-              + "\n1./add"
-              + "\n2./recode"
-              + "\n3./total"
-              + "\n4./Graph"
-              + "\n5./history"
-              + "\n6./history2"
-              + "\n7. exit(quit)"
-              + "\n명령어> ");
+    loop:
+      while (true) {
+        String command = Prompt.inputString(
+            "-------------------------"
+                + "\n[개인 운동 기록]"
+                + "\n1./add"
+                + "\n2./recode"
+                + "\n3./total"
+                + "\n4./Graph"
+                + "\n5./history"
+                + "\n6./history2"
+                + "\n7. exit(quit)"
+                + "\n명령어> ");
 
-      commandStack.push(command);
-      commandQueue.offer(command);
+        commandStack.push(command);
+        commandQueue.offer(command);
 
-      try {
-        switch (command) {
-          case "/history":
-            printCommandHistory(commandStack.iterator());
-          case "/history2":
-            printCommandHistory(commandQueue.iterator());
-          case "exit":
-          case "quit":
-            System.out.println("수고하셨습니다. 적당히하세요.");
-            break;
-          default:
-            MenuCommand commandHandler = commandMap.get(command);
+        try {
+          switch (command) {
+            case "/history":
+              printCommandHistory(commandStack.iterator());
+            case "/history2":
+              printCommandHistory(commandQueue.iterator());
+            case "exit":
+            case "quit":
+              System.out.println("수고하셨습니다. 적당히하세요.");
+              break loop;
+            default:
+              MenuCommand commandHandler = commandMap.get(command);
 
-            if (commandHandler == null) {
-              System.out.printf("\n실행할 수 없는 명령입니다.\n");
-            } else {
-              commandHandler.menuService();
-            }
+              if (commandHandler == null) {
+                System.out.printf("\n실행할 수 없는 명령입니다.\n");
+              } else {
+                commandHandler.menuService();
+              }
+          }
+        }catch (Exception e) {
+          System.out.printf("\n잘좀 입력하세요..\n> %s%s\n", e.getClass().getName(), e.getMessage());
         }
-      }catch (Exception e) {
-        System.out.printf("\n잘좀 입력하세요..\n> %s%s\n", e.getClass().getName(), e.getMessage());
+        System.out.println();
       }
-      System.out.println();
-    }
+
+    saveObjects(calisFile, calisthenics);
+    saveObjects(bodyBuildingFile, bodyBuilding);
+    saveObjects(cardioFile, cardio);
+    saveObjects(bodyCheckFile, bodyCheck);
   }
 
   static void printCommandHistory(Iterator<String> iterator) {

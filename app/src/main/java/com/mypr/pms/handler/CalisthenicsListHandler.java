@@ -27,16 +27,16 @@ public class CalisthenicsListHandler extends AbstractCalisthenicsHandler {
     //  }
 
     Iterator<Calisthenics> iterator = calisList.iterator();
-
-    while (iterator.hasNext()) {
-      if (calisList.size() == 0) {
-        System.out.println("\n입력된 정보가 없습니다.\n");
-        return;
+    if (calisList.size() == 0) {
+      System.out.println("\n입력된 정보가 없습니다.\n");
+      return;
+    } else { 
+      while (iterator.hasNext()) {
+        Calisthenics c = iterator.next();
+        System.out.printf("[%d회차. %s]\n", c.getNums(), c.getDate());
       }
-      Calisthenics c = iterator.next();
-      System.out.printf("[%d회차. %s]\n", c.getNums(), c.getDate());
+      todayRecode();
     }
-    todayRecode();
   }
 
   void todayRecode() {

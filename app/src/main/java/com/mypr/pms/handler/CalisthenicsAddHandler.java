@@ -7,8 +7,6 @@ import com.mypr.util.Prompt;
 
 public class CalisthenicsAddHandler extends AbstractCalisthenicsHandler {
 
-  List<Calisthenics> calisList;
-
   public CalisthenicsAddHandler (List<Calisthenics> calisList) {
     super (calisList);
   }
